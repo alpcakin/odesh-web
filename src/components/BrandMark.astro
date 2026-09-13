@@ -1,0 +1,41 @@
+---
+interface Props {
+  width?: number;
+  /** 'light' renders the dark ring for light backgrounds; 'dark' renders the pale ring for dark backgrounds. */
+  variant?: 'light' | 'dark';
+  animated?: boolean;
+  class?: string;
+}
+
+const { width = 34, variant = 'light', animated = false, class: className } = Astro.props;
+const height = Math.round((width * 66) / 96);
+const secondRing = variant === 'dark' ? 'var(--color-on-dark-light)' : 'var(--color-primary)';
+---
+
+<svg
+  width={width}
+  height={height}
+  viewBox="0 0 96 66"
+  fill="none"
+  aria-hidden="true"
+  focusable="false"
+  class:list={[className, { 'is-animated': animated }]}
+>
+  <circle cx="32.5" cy="33" r="27" stroke="var(--color-accent)" stroke-width="11" class="ring ring-a"></circle>
+  <circle cx="63.5" cy="33" r="27" stroke={secondRing} stroke-width="11" class="ring ring-b"></circle>
+</svg>
+
+<style>
+  .is-animated .ring {
+    stroke-dasharray: 170;
+    animation: od-draw 1.6s cubic-bezier(0.4, 0, 0.2, 1) both;
+  }
+
+  .is-animated .ring-a {
+    animation-delay: 0.2s;
+  }
+
+  .is-animated .ring-b {
+    animation-delay: 0.45s;
+  }
+</style>

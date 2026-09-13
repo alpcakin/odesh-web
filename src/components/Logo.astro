@@ -1,0 +1,42 @@
+---
+import BrandMark from './BrandMark.astro';
+
+interface Props {
+  href: string;
+  crumb?: string | undefined;
+  label?: string;
+}
+
+const { href, crumb, label = 'odesh' } = Astro.props;
+---
+
+<a href={href} class="logo" aria-label={label}>
+  <BrandMark width={34} />
+  <span class="wordmark">odesh</span>
+  {crumb && <span class="crumb">/ {crumb}</span>}
+</a>
+
+<style>
+  .logo {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    color: var(--color-text);
+  }
+
+  .logo:hover {
+    color: var(--color-text);
+  }
+
+  .wordmark {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.4px;
+  }
+
+  .crumb {
+    font-size: 13px;
+    color: var(--color-text-faint);
+    margin-left: 2px;
+  }
+</style>

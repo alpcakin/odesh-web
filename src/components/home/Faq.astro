@@ -1,0 +1,171 @@
+---
+import type { Locale } from '@/i18n';
+import { HOME_ANCHORS, getDictionary } from '@/i18n';
+import Icon from '../Icon.astro';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = getDictionary(locale);
+---
+
+<section id={HOME_ANCHORS[locale].faq} class="faq">
+  <div class="intro" data-reveal>
+    <div class="eyebrow">{t.faq.eyebrow}</div>
+    <h2 class="section-title faq-title">{t.faq.title}</h2>
+  </div>
+  <div class="list" data-reveal style="--reveal-delay: 100ms" data-faq>
+    {
+      t.faq.items.map((f, i) => (
+        <div class="item">
+          <h3 class="question">
+            <button type="button" class="trigger" aria-expanded={i === 0 ? 'true' : 'false'} aria-controls={`faq-panel-${i}`} id={`faq-trigger-${i}`} data-faq-trigger>
+              <span class="q-text">{f.q}</span>
+              <Icon name="chevron-down" size={20} strokeWidth={2.2} stroke="var(--color-primary)" class="chevron" />
+            </button>
+          </h3>
+          <div class="panel" id={`faq-panel-${i}`} role="region" aria-labelledby={`faq-trigger-${i}`} data-faq-panel>
+            <div class="panel-inner">
+              <p class="answer">{f.a}</p>
+            </div>
+          </div>
+        </div>
+      ))
+    }
+  </div>
+</section>
+
+<style>
+  .faq {
+    max-width: 820px;
+    margin: 0 auto;
+    padding: 104px var(--gutter);
+    width: 100%;
+  }
+
+  .intro {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-bottom: 36px;
+  }
+
+  .faq-title {
+    font-size: clamp(30px, 4vw, 44px);
+  }
+
+  .list {
+    display: flex;
+    flex-direction: column;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 24px;
+    overflow: hidden;
+  }
+
+  .item {
+    border-bottom: 1px solid var(--color-border-soft);
+  }
+
+  .item:last-child {
+    border-bottom: 0;
+  }
+
+  .question {
+    margin: 0;
+    font-size: inherit;
+    font-weight: inherit;
+  }
+
+  .trigger {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+    text-align: left;
+    background: transparent;
+    border: 0;
+    padding: 20px 24px;
+    color: var(--color-text);
+    min-height: 44px;
+  }
+
+  .trigger:hover {
+    background: var(--color-bg);
+  }
+
+  .trigger:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: -2px;
+  }
+
+  .q-text {
+    font-size: 17px;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+
+  .trigger :global(.chevron) {
+    flex-shrink: 0;
+    transition: transform 0.3s;
+  }
+
+  .trigger[aria-expanded='true'] :global(.chevron) {
+    transform: rotate(180deg);
+  }
+
+  .panel {
+    display: grid;
+    grid-template-rows: 0fr;
+    transition: grid-template-rows 0.35s var(--ease-out);
+  }
+
+  .panel.is-open {
+    grid-template-rows: 1fr;
+  }
+
+  .panel-inner {
+    overflow: hidden;
+  }
+
+  .answer {
+    margin: 0;
+    padding: 0 24px 22px;
+    font-size: 15px;
+    line-height: 1.6;
+    color: var(--color-text-secondary);
+    text-wrap: pretty;
+  }
+
+  @media (max-width: 759px) {
+    .faq {
+      padding-block: 64px;
+    }
+  }
+</style>
+
+<script>
+  const root = document.querySelector<HTMLElement>('[data-faq]');
+
+  if (root) {
+    const triggers = Array.from(root.querySelectorAll<HTMLButtonElement>('[data-faq-trigger]'));
+    const panels = Array.from(root.querySelectorAll<HTMLElement>('[data-faq-panel]'));
+
+    const setOpen = (index: number, open: boolean) => {
+      triggers[index]?.setAttribute('aria-expanded', String(open));
+      panels[index]?.classList.toggle('is-open', open);
+    };
+
+    triggers.forEach((trigger, i) => {
+      setOpen(i, trigger.getAttribute('aria-expanded') === 'true');
+      trigger.addEventListener('click', () => {
+        const isOpen = trigger.getAttribute('aria-expanded') === 'true';
+        triggers.forEach((_, j) => setOpen(j, false));
+        if (!isOpen) setOpen(i, true);
+      });
+    });
+  }
+</script>

@@ -1,0 +1,430 @@
+---
+import type { FeatureId, Locale } from '@/i18n';
+import { FEATURE_IDS, featurePath, getDictionary } from '@/i18n';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Nav from './Nav.astro';
+import Footer from './Footer.astro';
+import Icon from './Icon.astro';
+import type { IconName } from './Icon.astro';
+import PhoneFrame from './phone/PhoneFrame.astro';
+import PhoneHome from './phone/PhoneHome.astro';
+import PhoneFriend from './phone/PhoneFriend.astro';
+import PhoneAmount from './phone/PhoneAmount.astro';
+
+interface Props {
+  locale: Locale;
+  feature: FeatureId;
+}
+
+const { locale, feature } = Astro.props;
+const t = getDictionary(locale);
+const f = t.featuresPage.items[feature];
+
+const FEATURE_ICONS: Record<FeatureId, IconName> = { iban: 'copy', bolusme: 'users', defter: 'book', doviz: 'globe' };
+const FEATURE_SCREEN: Record<FeatureId, 'home' | 'friend' | 'amount'> = { iban: 'friend', bolusme: 'amount', defter: 'home', doviz: 'home' };
+const screen = FEATURE_SCREEN[feature];
+
+const alternates: Record<Locale, string> = { tr: featurePath('tr', feature), en: featurePath('en', feature) };
+const title = `${f.title} - ${t.meta.featuresTitleSuffix}`;
+const others = FEATURE_IDS.filter((id) => id !== feature);
+---
+
+<BaseLayout locale={locale} title={title} description={f.lead} path={featurePath(locale, feature)} alternates={alternates}>
+  <Nav locale={locale} alternates={alternates} variant="sub" crumb={t.featuresPage.crumb} />
+
+  <main>
+    <div class="container switcher-wrap">
+      <nav class="switcher" aria-label={t.nav.features}>
+        {
+          FEATURE_IDS.map((id) => (
+            <a href={featurePath(locale, id)} class:list={['tab', { 'is-active': id === feature }]} aria-current={id === feature ? 'page' : undefined}>
+              <Icon name={FEATURE_ICONS[id]} size={18} />
+              {t.featuresPage.labels[id]}
+            </a>
+          ))
+        }
+      </nav>
+    </div>
+
+    <header class="container hero">
+      <div class="copy">
+        <div class="eyebrow">{f.eyebrow}</div>
+        <h1 class="title">{f.title}</h1>
+        <p class="lead">{f.lead}</p>
+        <div class="points">
+          {
+            f.points.map((p, i) => (
+              <div class="point" style={`--rise-delay: ${80 + i * 70}ms`}>
+                <div class="point-icon">
+                  <Icon name="check" size={16} strokeWidth={2.6} />
+                </div>
+                <div>
+                  <div class="point-title">{p.title}</div>
+                  <div class="point-body">{p.body}</div>
+                </div>
+              </div>
+            ))
+          }
+        </div>
+      </div>
+
+      <div class="stage" data-feature-stage>
+        <div class="glow" aria-hidden="true"></div>
+        <div class="phone-scale">
+          <div class="phone">
+          <PhoneFrame size="lg">
+            <div class="screen-slot">
+              {screen === 'home' && <PhoneHome label={f.screenLabel} />}
+              {screen === 'friend' && <PhoneFriend label={f.screenLabel} />}
+              {screen === 'amount' && <PhoneAmount label={f.screenLabel} />}
+            </div>
+          </PhoneFrame>
+          <div class="screen-label">{f.screenLabel}</div>
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <section class="container cards-wrap">
+      <div class="cards">
+        {
+          f.cards.map((c, i) => (
+            <div class:list={['card', { dark: i === 1 }]} style={`--rise-delay: ${i * 70}ms`}>
+              <div class="card-big">{c.big}</div>
+              <div class="card-title">{c.title}</div>
+              <div class="card-body">{c.body}</div>
+            </div>
+          ))
+        }
+      </div>
+    </section>
+
+    <section class="container others-wrap">
+      <div class="eyebrow others-title">{t.featuresPage.others}</div>
+      <div class="others">
+        {
+          others.map((id) => (
+            <a href={featurePath(locale, id)} class="other">
+              <span class="other-left">
+                <Icon name={FEATURE_ICONS[id]} size={18} stroke="var(--color-primary)" />
+                <span class="other-label">{t.featuresPage.labels[id]}</span>
+              </span>
+              <Icon name="arrow-right" size={18} strokeWidth={2.2} stroke="var(--color-text-muted)" />
+            </a>
+          ))
+        }
+      </div>
+    </section>
+  </main>
+
+  <Footer locale={locale} variant="compact" />
+</BaseLayout>
+
+<style>
+  .switcher-wrap {
+    padding-top: 28px;
+  }
+
+  .switcher {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    padding: 6px;
+    width: fit-content;
+    max-width: 100%;
+  }
+
+  .tab {
+    display: inline-flex;
+    align-items: center;
+    gap: 8px;
+    border-radius: 999px;
+    padding: 10px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-text-secondary);
+    min-height: 44px;
+    transition:
+      background 0.25s,
+      color 0.25s;
+  }
+
+  .tab:hover {
+    background: var(--color-bg);
+    color: var(--color-text-secondary);
+  }
+
+  .tab.is-active,
+  .tab.is-active:hover {
+    background: var(--color-primary);
+    color: #fff;
+  }
+
+  .hero {
+    padding-block: 56px 32px;
+    display: grid;
+    grid-template-columns: minmax(0, 1.1fr) minmax(0, 1fr);
+    gap: 48px;
+    align-items: center;
+  }
+
+  .copy {
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    animation: od-rise 0.5s var(--ease-out) both;
+  }
+
+  .title {
+    margin: 0;
+    font-size: clamp(36px, 5.4vw, 66px);
+    line-height: 1.04;
+    letter-spacing: -0.035em;
+    font-weight: 800;
+    text-wrap: balance;
+  }
+
+  .lead {
+    margin: 0;
+    font-size: clamp(17px, 1.4vw, 20px);
+    line-height: 1.5;
+    color: var(--color-text-muted);
+    max-width: 560px;
+    text-wrap: pretty;
+  }
+
+  .points {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    margin-top: 6px;
+  }
+
+  .point {
+    display: flex;
+    gap: 14px;
+    align-items: flex-start;
+    animation: od-rise 0.5s var(--ease-out) both;
+    animation-delay: var(--rise-delay, 0ms);
+  }
+
+  .point-icon {
+    width: 32px;
+    height: 32px;
+    border-radius: 10px;
+    background: var(--color-primary-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+    color: var(--color-primary);
+  }
+
+  .point-title {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 1.35;
+  }
+
+  .point-body {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--color-text-muted);
+    text-wrap: pretty;
+  }
+
+  .stage {
+    position: relative;
+    min-width: 0;
+    display: flex;
+    justify-content: center;
+    min-height: calc(704px * var(--phone-scale, 1) + 70px);
+  }
+
+  .glow {
+    position: absolute;
+    top: 10%;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 420px;
+    height: 420px;
+    max-width: 100%;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(155, 210, 33, 0.22), rgba(155, 210, 33, 0) 65%);
+    pointer-events: none;
+  }
+
+  .phone-scale {
+    position: relative;
+    width: 330px;
+    height: 704px;
+    flex-shrink: 0;
+    transform: scale(var(--phone-scale, 1));
+    transform-origin: top center;
+  }
+
+  .phone {
+    position: relative;
+    width: 330px;
+    height: 704px;
+    animation: od-float 6s ease-in-out infinite;
+    filter: drop-shadow(0 40px 50px rgba(14, 26, 20, 0.28));
+  }
+
+  .screen-label {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -46px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 999px;
+    padding: 8px 14px;
+    font-size: 12px;
+    font-weight: 600;
+    color: var(--color-text-muted);
+    white-space: nowrap;
+    box-shadow: 0 4px 12px rgba(14, 26, 20, 0.08);
+  }
+
+  .cards-wrap {
+    padding-block: 64px;
+  }
+
+  .cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 280px), 1fr));
+    gap: 16px;
+  }
+
+  .card {
+    background: var(--color-surface);
+    color: var(--color-text);
+    border: 1px solid var(--color-border);
+    border-radius: 24px;
+    padding: 28px;
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+    animation: od-rise 0.5s var(--ease-out) both;
+    animation-delay: var(--rise-delay, 0ms);
+  }
+
+  .card.dark {
+    background: var(--color-primary);
+    color: #fff;
+    border-color: var(--color-primary);
+  }
+
+  .card-big {
+    font-size: clamp(28px, 3vw, 40px);
+    font-weight: 800;
+    letter-spacing: -0.03em;
+    line-height: 1;
+    color: var(--color-primary);
+  }
+
+  .card.dark .card-big {
+    color: var(--color-accent);
+  }
+
+  .card-title {
+    font-size: 17px;
+    font-weight: 700;
+    line-height: 1.3;
+  }
+
+  .card-body {
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--color-text-muted);
+    text-wrap: pretty;
+  }
+
+  .card.dark .card-body {
+    color: var(--color-on-dark-muted);
+  }
+
+  .others-wrap {
+    padding-block: 0 80px;
+  }
+
+  .others-title {
+    margin-bottom: 14px;
+  }
+
+  .others {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 220px), 1fr));
+    gap: 12px;
+  }
+
+  .other {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 18px;
+    padding: 18px 20px;
+    color: var(--color-text);
+    transition:
+      transform 0.15s,
+      border-color 0.2s;
+  }
+
+  .other:hover {
+    transform: translateY(-2px);
+    border-color: var(--color-primary);
+    color: var(--color-text);
+  }
+
+  .other-left {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .other-label {
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  @media (max-width: 999px) {
+    .hero {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
+  @media (max-width: 759px) {
+    .hero {
+      padding-block: 36px 24px;
+    }
+
+    .cards-wrap {
+      padding-block: 40px;
+    }
+  }
+</style>
+
+<script>
+  const stage = document.querySelector<HTMLElement>('[data-feature-stage]');
+
+  if (stage) {
+    let current = '';
+    const apply = (width: number) => {
+      const scale = Math.min(1, width / 380).toFixed(4);
+      if (scale === current) return;
+      current = scale;
+      requestAnimationFrame(() => stage.style.setProperty('--phone-scale', scale));
+    };
+    apply(stage.clientWidth);
+    new ResizeObserver((entries) => {
+      for (const entry of entries) apply(entry.contentRect.width);
+    }).observe(stage);
+  }
+</script>

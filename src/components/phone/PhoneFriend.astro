@@ -1,0 +1,307 @@
+---
+import PhoneScreen from './PhoneScreen.astro';
+import Icon from '../Icon.astro';
+
+interface Props {
+  label: string;
+}
+
+const { label } = Astro.props;
+---
+
+<PhoneScreen label={label}>
+  <div class="body">
+    <div class="toolbar">
+      <div class="tool-btn"><Icon name="arrow-left" size={22} /></div>
+      <div class="tool-btn"><Icon name="settings" size={22} /></div>
+    </div>
+
+    <div class="profile">
+      <div class="avatar">EK</div>
+      <div class="profile-main">
+        <div class="name-line">
+          <span class="name">Ece Kaya</span>
+          <span class="iban-btn"><Icon name="copy" size={10} strokeWidth={2.4} /><span>IBAN</span></span>
+        </div>
+        <span class="handle">@ecekaya</span>
+      </div>
+    </div>
+
+    <div class="balance">
+      <div class="balance-line">
+        <span class="currency-sign">₺</span>
+        <span class="balance-amount tabular">600,00</span>
+      </div>
+      <span class="balance-sub">Sen borçlusun</span>
+    </div>
+
+    <div class="settle">Borcu kapat</div>
+
+    <div class="section-head">
+      <i></i>
+      <span>ARAMIZDA</span>
+    </div>
+
+    <div class="entry">
+      <div class="entry-icon negative"><Icon name="file" size={16} stroke="var(--color-negative)" /></div>
+      <div class="entry-main">
+        <div class="entry-title">Kira · Eylül</div>
+        <div class="entry-date"><Icon name="calendar" size={10} /><span>1 Eyl 2026</span></div>
+      </div>
+      <div class="entry-amount negative tabular">−₺750,00</div>
+    </div>
+    <div class="divider"></div>
+    <div class="entry">
+      <div class="entry-icon positive"><Icon name="file" size={16} stroke="var(--color-positive)" /></div>
+      <div class="entry-main">
+        <div class="entry-title">Market</div>
+        <div class="entry-date"><Icon name="calendar" size={10} /><span>28 Ağu 2026</span></div>
+      </div>
+      <div class="entry-amount positive tabular">+₺150,00</div>
+    </div>
+  </div>
+
+  <div class="toast">Kopyalandı</div>
+</PhoneScreen>
+
+<style>
+  .body {
+    flex: 1;
+    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  .toolbar {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 8px 0;
+  }
+
+  .tool-btn {
+    width: 36px;
+    height: 36px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .profile {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+    padding: 12px 0;
+  }
+
+  .avatar {
+    width: 56px;
+    height: 56px;
+    border-radius: 28px;
+    background: var(--color-primary);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 22.4px;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+
+  .profile-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+  }
+
+  .name-line {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+  }
+
+  .name {
+    font-size: 20px;
+    font-weight: 700;
+    line-height: 26px;
+  }
+
+  .iban-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 4px;
+    background: var(--color-primary);
+    border-radius: 12px;
+    padding: 5px 8px;
+    color: #fff;
+  }
+
+  .iban-btn span {
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .handle {
+    font-size: 13px;
+    color: var(--color-text-muted);
+  }
+
+  .balance {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 24px 0;
+    gap: 4px;
+    margin-bottom: 8px;
+  }
+
+  .balance-line {
+    display: flex;
+    align-items: flex-end;
+    gap: 4px;
+  }
+
+  .currency-sign {
+    font-size: 24px;
+    font-weight: 300;
+    color: var(--color-text-muted);
+    padding-bottom: 8px;
+    line-height: 28px;
+  }
+
+  .balance-amount {
+    font-size: 52px;
+    font-weight: 700;
+    line-height: 60px;
+    color: var(--color-negative);
+    letter-spacing: -1.2px;
+  }
+
+  .balance-sub {
+    font-size: 13px;
+    color: var(--color-text-muted);
+    margin-top: 2px;
+    white-space: nowrap;
+  }
+
+  .settle {
+    background: var(--color-primary);
+    border-radius: 999px;
+    padding: 16px 0;
+    text-align: center;
+    margin-bottom: 8px;
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .section-head {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 0 4px;
+    margin: 16px 0 4px;
+  }
+
+  .section-head i {
+    display: block;
+    width: 3px;
+    height: 14px;
+    border-radius: 2px;
+    background: var(--color-primary);
+  }
+
+  .section-head span {
+    font-size: 14px;
+    font-weight: 700;
+    letter-spacing: 0.8px;
+  }
+
+  .entry {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 16px 0;
+  }
+
+  .entry-icon {
+    width: 54px;
+    height: 54px;
+    border-radius: 27px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .entry-icon.negative {
+    background: rgba(209, 75, 67, 0.08);
+  }
+
+  .entry-icon.positive {
+    background: rgba(79, 157, 93, 0.08);
+  }
+
+  .entry-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 3px;
+    min-width: 0;
+  }
+
+  .entry-title {
+    font-size: 18px;
+    font-weight: 700;
+    line-height: 24px;
+  }
+
+  .entry-date {
+    display: flex;
+    align-items: center;
+    gap: 3px;
+    margin-top: 3px;
+    color: var(--color-text-muted);
+  }
+
+  .entry-date span {
+    font-size: 12px;
+  }
+
+  .entry-amount {
+    font-size: 18px;
+    font-weight: 700;
+  }
+
+  .entry-amount.negative {
+    color: var(--color-negative);
+  }
+
+  .entry-amount.positive {
+    color: var(--color-positive);
+  }
+
+  .divider {
+    height: 1px;
+    background: var(--color-border);
+    margin-left: 62px;
+  }
+
+  .toast {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: 64px;
+    background: var(--color-text);
+    border-radius: 999px;
+    padding: 10px 20px;
+    box-shadow: 0 4px 8px rgba(26, 26, 26, 0.2);
+    font-size: 14px;
+    font-weight: 600;
+    color: #fff;
+    white-space: nowrap;
+  }
+</style>

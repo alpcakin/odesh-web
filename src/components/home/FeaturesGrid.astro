@@ -1,0 +1,640 @@
+---
+import type { Locale } from '@/i18n';
+import { HOME_ANCHORS, getDictionary } from '@/i18n';
+import Icon from '../Icon.astro';
+import BrandMark from '../BrandMark.astro';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = getDictionary(locale);
+
+const DEMO_IBAN = 'TR12 0006 4000 0011 2345 6789 01';
+const DEFAULT_AMOUNT = 1200;
+const DEFAULT_PEOPLE = 4;
+const fmtTRY = (n: number) => '₺' + n.toLocaleString('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+const initialRows = t.features.split.people.slice(0, DEFAULT_PEOPLE).map((name, i) => ({
+  name,
+  initials: name.slice(0, 2).toLocaleUpperCase(locale === 'tr' ? 'tr-TR' : 'en'),
+  self: i === 0,
+  amount: (i === 0 ? '' : '−') + fmtTRY(DEFAULT_AMOUNT / DEFAULT_PEOPLE),
+}));
+
+const fxRows = [
+  { flag: '🇹🇷', ...t.features.fx.rows[0], amount: '+₺1.030,00', positive: true },
+  { flag: '🇪🇺', ...t.features.fx.rows[1], amount: '−€45,00', positive: false },
+  { flag: '🇭🇺', ...t.features.fx.rows[2], amount: '+Ft12.500', positive: true },
+];
+const currencies = ['TRY', 'EUR', 'USD', 'GBP', 'HUF'];
+---
+
+<section id={HOME_ANCHORS[locale].features} class="container section">
+  <div class="intro" data-reveal>
+    <div class="eyebrow">{t.features.eyebrow}</div>
+    <h2 class="section-title">{t.features.title}</h2>
+    <p class="section-lead">{t.features.sub}</p>
+  </div>
+
+  <div class="grid">
+    <article class="card span-two iban-card" data-reveal data-iban-demo>
+      <div class="card-head">
+        <div class="icon-box"><Icon name="copy" size={20} stroke="var(--color-primary)" /></div>
+        <h3 class="card-title">{t.features.iban.title}</h3>
+        <p class="card-body">{t.features.iban.body}</p>
+      </div>
+      <div class="demo">
+        <div class="demo-person">
+          <div class="avatar">EK</div>
+          <div class="demo-main">
+            <div class="demo-name">{t.features.iban.demoName}</div>
+            <div class="demo-handle">{t.features.iban.demoHandle}</div>
+          </div>
+          <div class="demo-amount tabular">−₺600,00</div>
+        </div>
+        <div class="demo-row">
+          <code class="iban" data-iban-value={DEMO_IBAN}>{DEMO_IBAN}</code>
+          <button type="button" class="iban-btn" data-iban-btn data-label={t.features.iban.btn} data-label-done={t.features.iban.btnDone}>
+            <Icon name="copy" size={14} strokeWidth={2.4} />
+            <span data-iban-label>{t.features.iban.btn}</span>
+          </button>
+        </div>
+        <div class="hint">{t.features.iban.hint}</div>
+      </div>
+      <div class="toast" data-iban-toast role="status" aria-live="polite">{t.features.iban.toast}</div>
+    </article>
+
+    <article class="card dark remind-card" data-reveal style="--reveal-delay: 80ms">
+      <div class="ring" aria-hidden="true"></div>
+      <div class="card-head">
+        <div class="icon-box on-dark"><Icon name="bell" size={20} stroke="var(--color-accent)" class="bell" /></div>
+        <h3 class="card-title">{t.features.remind.title}</h3>
+        <p class="card-body on-dark">{t.features.remind.body}</p>
+      </div>
+      <div class="notification">
+        <div class="notif-icon"><BrandMark width={22} variant="dark" /></div>
+        <div class="notif-main">
+          <div class="notif-top"><span class="notif-app">odesh</span><span class="notif-time">{t.features.remind.time}</span></div>
+          <div class="notif-msg">{t.features.remind.msg}</div>
+        </div>
+      </div>
+      <div class="tags">
+        {t.features.remind.tags.map((tag) => <span class="tag">{tag}</span>)}
+      </div>
+    </article>
+
+    <article class="card split-card" data-reveal style="--reveal-delay: 50ms" data-split-demo>
+      <div class="card-head">
+        <div class="icon-box accent"><Icon name="users" size={20} stroke="var(--color-accent-strong)" /></div>
+        <h3 class="card-title">{t.features.split.title}</h3>
+        <p class="card-body">{t.features.split.body}</p>
+      </div>
+      <div class="demo split-demo">
+        <div class="amount-line">
+          <span class="amount-sign">₺</span>
+          <input
+            type="text"
+            inputmode="numeric"
+            value="1.200"
+            aria-label={t.features.split.amountLabel}
+            class="amount-input tabular"
+            data-split-amount
+            maxlength="10"
+          />
+        </div>
+        <input type="range" min="2" max="6" step="1" value={DEFAULT_PEOPLE} aria-label={t.features.split.peopleLabel} class="range" data-split-people />
+        <div class="rows" data-split-rows data-people={JSON.stringify(t.features.split.people)}>
+          {
+            initialRows.map((r) => (
+              <div class="row">
+                <div class:list={['row-avatar', { self: r.self }]}>{r.initials}</div>
+                <span class="row-name">{r.name}</span>
+                <span class:list={['row-amount tabular', { owes: !r.self }]}>{r.amount}</span>
+              </div>
+            ))
+          }
+        </div>
+        <div class="hint center" data-split-hint data-per-label={t.features.split.perPerson} data-hint={t.features.split.hint}>
+          {t.features.split.perPerson} {fmtTRY(DEFAULT_AMOUNT / DEFAULT_PEOPLE)} · {t.features.split.hint}
+        </div>
+      </div>
+    </article>
+
+    <article class="card span-two fx-card" data-reveal style="--reveal-delay: 100ms">
+      <div class="card-head">
+        <div class="icon-box"><Icon name="globe" size={20} stroke="var(--color-primary)" /></div>
+        <h3 class="card-title">{t.features.fx.title}</h3>
+        <p class="card-body">{t.features.fx.body}</p>
+      </div>
+      <div class="fx-list">
+        {
+          fxRows.map((r) => (
+            <div class="fx-row">
+              <div class="fx-left">
+                <span class="fx-flag">{r.flag}</span>
+                <div>
+                  <div class="fx-code">{r.code}</div>
+                  <div class="fx-name">{r.name}</div>
+                </div>
+              </div>
+              <span class:list={['fx-amount tabular', r.positive ? 'positive' : 'negative']}>{r.amount}</span>
+            </div>
+          ))
+        }
+        <div class="chips">
+          {currencies.map((c) => <span class="chip">{c}</span>)}
+        </div>
+      </div>
+    </article>
+  </div>
+</section>
+
+<style>
+  .section {
+    padding-block: 104px;
+  }
+
+  .intro {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    max-width: 680px;
+    margin-bottom: 44px;
+  }
+
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 300px), 1fr));
+    gap: 16px;
+  }
+
+  .card {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 28px;
+    padding: 32px;
+    display: flex;
+    flex-direction: column;
+    gap: 22px;
+    position: relative;
+    overflow: hidden;
+  }
+
+  .card.dark {
+    background: var(--color-primary);
+    border-color: var(--color-primary);
+    color: #fff;
+  }
+
+  .span-two {
+    grid-column: span 2;
+  }
+
+  .card-head {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .iban-card .card-head {
+    max-width: 440px;
+  }
+
+  .icon-box {
+    width: 44px;
+    height: 44px;
+    border-radius: 14px;
+    background: var(--color-primary-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .icon-box.accent {
+    background: var(--color-accent-soft);
+  }
+
+  .icon-box.on-dark {
+    background: rgba(255, 255, 255, 0.1);
+  }
+
+  .icon-box :global(.bell) {
+    animation: od-bell 3.2s ease-in-out infinite;
+    transform-origin: 50% 8%;
+  }
+
+  .card-title {
+    margin: 0;
+    font-size: 24px;
+    font-weight: 700;
+    letter-spacing: -0.02em;
+    line-height: 1.2;
+  }
+
+  .card-body {
+    margin: 0;
+    font-size: 15px;
+    line-height: 1.55;
+    color: var(--color-text-muted);
+    text-wrap: pretty;
+  }
+
+  .card-body.on-dark {
+    color: var(--color-on-dark-muted);
+  }
+
+  .demo {
+    background: var(--color-bg);
+    border-radius: 20px;
+    padding: 18px;
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .demo-person {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+  }
+
+  .avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 21px;
+    background: var(--color-primary);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .demo-main {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .demo-name {
+    font-size: 16px;
+    font-weight: 600;
+  }
+
+  .demo-handle {
+    font-size: 13px;
+    color: var(--color-text-muted);
+  }
+
+  .demo-amount {
+    font-size: 16px;
+    font-weight: 600;
+    color: var(--color-negative);
+  }
+
+  .demo-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    flex-wrap: wrap;
+  }
+
+  .iban {
+    flex: 1;
+    min-width: 220px;
+    font-family: var(--font-mono);
+    font-size: 14px;
+    letter-spacing: 0.5px;
+    color: var(--color-text-secondary);
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 12px;
+    padding: 12px 14px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .iban-btn {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    background: var(--color-primary);
+    color: #fff;
+    border: 0;
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-size: 14px;
+    font-weight: 600;
+    min-height: 44px;
+    transition:
+      transform 0.15s,
+      background 0.25s;
+  }
+
+  .iban-btn:hover {
+    transform: scale(1.03);
+  }
+
+  .iban-btn:active {
+    transform: scale(0.96);
+  }
+
+  .iban-btn.is-done {
+    background: var(--color-positive);
+  }
+
+  .hint {
+    font-size: 12px;
+    color: var(--color-text-faint);
+  }
+
+  .hint.center {
+    text-align: center;
+  }
+
+  .toast {
+    position: absolute;
+    left: 50%;
+    bottom: 22px;
+    transform: translateX(-50%) translateY(16px);
+    background: var(--color-text);
+    color: #fff;
+    border-radius: 999px;
+    padding: 10px 20px;
+    font-size: 14px;
+    font-weight: 600;
+    box-shadow: 0 4px 12px rgba(26, 26, 26, 0.25);
+    opacity: 0;
+    transition:
+      opacity 0.3s,
+      transform 0.4s var(--ease-out);
+    pointer-events: none;
+    white-space: nowrap;
+  }
+
+  .toast.is-visible {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+
+  .ring {
+    position: absolute;
+    right: -60px;
+    bottom: -80px;
+    width: 260px;
+    height: 260px;
+    border-radius: 50%;
+    border: 34px solid rgba(155, 210, 33, 0.18);
+  }
+
+  .notification {
+    background: rgba(255, 255, 255, 0.96);
+    color: var(--color-text);
+    border-radius: 18px;
+    padding: 14px;
+    display: flex;
+    gap: 12px;
+    align-items: flex-start;
+    box-shadow: 0 14px 30px rgba(0, 0, 0, 0.25);
+    position: relative;
+  }
+
+  .notif-icon {
+    width: 38px;
+    height: 38px;
+    border-radius: 10px;
+    background: var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-shrink: 0;
+  }
+
+  .notif-main {
+    flex: 1;
+    min-width: 0;
+  }
+
+  .notif-top {
+    display: flex;
+    justify-content: space-between;
+    gap: 8px;
+  }
+
+  .notif-app {
+    font-size: 13px;
+    font-weight: 600;
+  }
+
+  .notif-time {
+    font-size: 12px;
+    color: var(--color-text-muted);
+  }
+
+  .notif-msg {
+    font-size: 14px;
+    line-height: 1.4;
+    margin-top: 2px;
+  }
+
+  .tags {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+  }
+
+  .tag {
+    font-size: 12px;
+    font-weight: 600;
+    border: 1px solid rgba(255, 255, 255, 0.22);
+    border-radius: 999px;
+    padding: 6px 10px;
+    color: var(--color-primary-soft);
+  }
+
+  .split-demo {
+    gap: 16px;
+  }
+
+  .amount-line {
+    display: flex;
+    align-items: baseline;
+    justify-content: center;
+    gap: 4px;
+  }
+
+  .amount-sign {
+    font-size: 22px;
+    font-weight: 300;
+    color: var(--color-text-muted);
+  }
+
+  .amount-input {
+    width: 150px;
+    border: 0;
+    outline: 0;
+    background: transparent;
+    text-align: center;
+    font-size: 44px;
+    font-weight: 700;
+    letter-spacing: -1.5px;
+    color: var(--color-text);
+    padding: 0;
+  }
+
+  .amount-input:focus-visible {
+    outline: 2px solid var(--color-primary);
+    outline-offset: 4px;
+    border-radius: 8px;
+  }
+
+  .range {
+    width: 100%;
+    accent-color: var(--color-primary);
+    cursor: pointer;
+  }
+
+  .rows {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+  }
+
+  .rows :global(.row) {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    padding: 8px 0;
+    border-top: 1px solid var(--color-border);
+    animation: od-rise 0.4s var(--ease-out) both;
+    animation-delay: var(--row-delay, 0ms);
+  }
+
+  .rows :global(.row-avatar) {
+    width: 30px;
+    height: 30px;
+    border-radius: 15px;
+    background: var(--color-primary);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .rows :global(.row-avatar.self) {
+    background: var(--color-accent);
+    color: var(--color-primary-dark);
+  }
+
+  .rows :global(.row-name) {
+    flex: 1;
+    font-size: 14px;
+    font-weight: 500;
+  }
+
+  .rows :global(.row-amount) {
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-text);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .rows :global(.row-amount.owes) {
+    color: var(--color-negative);
+  }
+
+  .fx-card {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 260px), 1fr));
+    gap: 24px;
+    align-items: center;
+  }
+
+  .fx-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+  }
+
+  .fx-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 12px;
+    background: var(--color-bg);
+    border-radius: 16px;
+    padding: 14px 16px;
+  }
+
+  .fx-left {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .fx-flag {
+    font-size: 20px;
+  }
+
+  .fx-code {
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .fx-name {
+    font-size: 12px;
+    color: var(--color-text-muted);
+  }
+
+  .fx-amount {
+    font-size: 15px;
+    font-weight: 600;
+  }
+
+  .fx-amount.positive {
+    color: var(--color-positive);
+  }
+
+  .fx-amount.negative {
+    color: var(--color-negative);
+  }
+
+  .chips {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+    padding-top: 4px;
+  }
+
+  .chip {
+    font-size: 12px;
+    font-weight: 600;
+    background: var(--color-primary-soft);
+    color: var(--color-primary);
+    border-radius: 999px;
+    padding: 5px 10px;
+  }
+
+  @media (max-width: 759px) {
+    .section {
+      padding-block: 64px;
+    }
+
+    .span-two {
+      grid-column: auto;
+    }
+  }
+</style>
+
+<script>
+  import { initIbanDemo } from '@/scripts/iban-demo';
+  import { initSplitDemo } from '@/scripts/split-demo';
+
+  initIbanDemo();
+  initSplitDemo();
+</script>

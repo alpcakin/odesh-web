@@ -1,0 +1,279 @@
+---
+import type { Locale } from '@/i18n';
+import { HOME_ANCHORS, getDictionary } from '@/i18n';
+import { SITE } from '@/config/site';
+import StoreBadges from '../StoreBadges.astro';
+import PhoneFrame from '../phone/PhoneFrame.astro';
+import PhoneHome from '../phone/PhoneHome.astro';
+import PhoneFriend from '../phone/PhoneFriend.astro';
+import PhoneAmount from '../phone/PhoneAmount.astro';
+import PhoneWelcome from '../phone/PhoneWelcome.astro';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = getDictionary(locale);
+const storeTop = SITE.storesLive ? t.hero.storeTopLive : t.hero.storeTop;
+---
+
+<section class="hero">
+  <div class="glow" aria-hidden="true"></div>
+  <div class="container hero-grid">
+    <div class="copy">
+      <div class="pill">
+        <span class="pulse" aria-hidden="true"></span>
+        <span class="pill-text">{t.hero.eyebrow}</span>
+      </div>
+      <h1 class="title">
+        {t.hero.title1}
+        <span class="highlight">{t.hero.title2}<i aria-hidden="true"></i></span>
+      </h1>
+      <p class="sub">{t.hero.sub}</p>
+      <StoreBadges topLabel={storeTop} id={HOME_ANCHORS[locale].download} />
+    </div>
+
+    <div class="stage" data-hero-stage aria-label={t.hero.stageLabel}>
+      <div class="stage-inner" data-hero-inner>
+        <div class="phone-small">
+          <PhoneFrame size="sm">
+            <div class="screen-slot"><PhoneFriend label={t.featuresPage.items.iban.screenLabel} /></div>
+          </PhoneFrame>
+        </div>
+
+        <div class="phone-large" data-hero-carousel data-interval={SITE.heroCycleMs}>
+          <PhoneFrame size="lg">
+            <div class="slide is-active" data-slide>
+              <div class="screen-slot"><PhoneHome label={t.hero.screenLabels[0]} /></div>
+            </div>
+            <div class="slide is-next" data-slide>
+              <div class="screen-slot"><PhoneAmount label={t.hero.screenLabels[1]} /></div>
+            </div>
+            <div class="slide is-next" data-slide>
+              <div class="screen-slot"><PhoneWelcome label={t.hero.screenLabels[2]} /></div>
+            </div>
+          </PhoneFrame>
+          <div class="dots" role="tablist">
+            {
+              t.hero.screenLabels.map((label, i) => (
+                <button
+                  type="button"
+                  role="tab"
+                  class:list={['dot', { 'is-active': i === 0 }]}
+                  aria-label={label}
+                  aria-selected={i === 0 ? 'true' : 'false'}
+                  data-dot={i}
+                />
+              ))
+            }
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .hero {
+    position: relative;
+    overflow: hidden;
+  }
+
+  .glow {
+    position: absolute;
+    top: -220px;
+    right: -160px;
+    width: 720px;
+    height: 720px;
+    border-radius: 50%;
+    background: radial-gradient(circle, rgba(155, 210, 33, 0.28), rgba(155, 210, 33, 0) 62%);
+    pointer-events: none;
+    animation: od-glow 7s ease-in-out infinite;
+  }
+
+  .hero-grid {
+    padding-block: 72px 40px;
+    display: grid;
+    grid-template-columns: minmax(0, 1.05fr) minmax(0, 1fr);
+    gap: 48px;
+    align-items: center;
+    position: relative;
+  }
+
+  .copy {
+    display: flex;
+    flex-direction: column;
+    gap: 26px;
+    max-width: 600px;
+    animation: od-rise 0.7s var(--ease-out) both;
+  }
+
+  .pill {
+    display: inline-flex;
+    align-self: flex-start;
+    align-items: center;
+    gap: 8px;
+    background: var(--color-primary-soft);
+    border-radius: 999px;
+    padding: 7px 12px 7px 8px;
+  }
+
+  .pulse {
+    display: inline-block;
+    width: 8px;
+    height: 8px;
+    border-radius: 50%;
+    background: var(--color-accent);
+    animation: od-pulse 1.8s ease-in-out infinite;
+  }
+
+  .pill-text {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    color: var(--color-primary);
+  }
+
+  .title {
+    margin: 0;
+    font-size: clamp(40px, 6.2vw, 76px);
+    line-height: 1.02;
+    letter-spacing: -0.035em;
+    font-weight: 800;
+    color: var(--color-text);
+    text-wrap: balance;
+  }
+
+  .highlight {
+    color: var(--color-primary);
+    position: relative;
+    display: inline-block;
+  }
+
+  .highlight i {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0.02em;
+    height: 0.18em;
+    background: var(--color-accent);
+    z-index: -1;
+    border-radius: 3px;
+    opacity: 0.85;
+  }
+
+  .sub {
+    margin: 0;
+    font-size: clamp(17px, 1.5vw, 20px);
+    line-height: 1.5;
+    color: var(--color-text-muted);
+    max-width: 520px;
+    text-wrap: pretty;
+  }
+
+  .stage {
+    position: relative;
+    min-width: 0;
+    display: flex;
+    justify-content: center;
+    align-items: flex-start;
+    height: calc(760px * var(--phone-scale, 1) + 40px);
+  }
+
+  .stage-inner {
+    position: relative;
+    flex-shrink: 0;
+    width: 560px;
+    height: 760px;
+    transform: scale(var(--phone-scale, 1));
+    transform-origin: top center;
+    animation: od-rise 0.9s 0.15s var(--ease-out) both;
+  }
+
+  .phone-small {
+    position: absolute;
+    left: 0;
+    top: 70px;
+    width: 300px;
+    height: 640px;
+    animation: od-float-tilt 7s ease-in-out infinite;
+    filter: drop-shadow(0 30px 40px rgba(14, 26, 20, 0.22));
+  }
+
+  .phone-large {
+    position: absolute;
+    right: 0;
+    top: 0;
+    width: 330px;
+    height: 704px;
+    animation: od-float 6s 0.8s ease-in-out infinite;
+    filter: drop-shadow(0 40px 50px rgba(14, 26, 20, 0.3));
+  }
+
+  .slide {
+    position: absolute;
+    inset: 0;
+    transition:
+      opacity 0.55s ease,
+      transform 0.7s var(--ease-out);
+    opacity: 0;
+  }
+
+  .slide.is-active {
+    opacity: 1;
+    transform: translateX(0);
+  }
+
+  .slide.is-prev {
+    transform: translateX(-40px);
+  }
+
+  .slide.is-next {
+    transform: translateX(40px);
+  }
+
+  .dots {
+    position: absolute;
+    left: 50%;
+    transform: translateX(-50%);
+    bottom: -34px;
+    display: flex;
+    gap: 8px;
+  }
+
+  .dot {
+    width: 8px;
+    height: 8px;
+    border-radius: 4px;
+    border: 0;
+    background: var(--color-dot-idle);
+    padding: 0;
+    transition: all 0.3s;
+  }
+
+  .dot.is-active {
+    width: 24px;
+    background: var(--color-primary);
+  }
+
+  @media (max-width: 999px) {
+    .hero-grid {
+      grid-template-columns: minmax(0, 1fr);
+    }
+  }
+
+  @media (max-width: 759px) {
+    .hero-grid {
+      padding-block: 40px 24px;
+    }
+  }
+</style>
+
+<script>
+  import { initHeroStage, initHeroCarousel } from '@/scripts/hero';
+
+  initHeroStage();
+  initHeroCarousel();
+</script>

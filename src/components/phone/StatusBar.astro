@@ -1,0 +1,74 @@
+---
+---
+
+<div class="status-bar" aria-hidden="true">
+  <span class="time">9:41</span>
+  <div class="indicators">
+    <div class="signal"><i></i><i></i><i></i><i></i></div>
+    <div class="battery"><div class="battery-fill"></div></div>
+  </div>
+</div>
+
+<style>
+  .status-bar {
+    height: 54px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 0 34px 0 38px;
+    flex-shrink: 0;
+  }
+
+  .time {
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: -0.2px;
+  }
+
+  .indicators {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .signal {
+    display: flex;
+    align-items: flex-end;
+    gap: 1.5px;
+  }
+
+  .signal i {
+    display: block;
+    width: 3px;
+    background: var(--color-text);
+    border-radius: 1px;
+  }
+
+  .signal i:nth-child(1) {
+    height: 4px;
+  }
+  .signal i:nth-child(2) {
+    height: 6px;
+  }
+  .signal i:nth-child(3) {
+    height: 8px;
+  }
+  .signal i:nth-child(4) {
+    height: 10px;
+  }
+
+  .battery {
+    width: 24px;
+    height: 11px;
+    border: 1.5px solid var(--color-text);
+    border-radius: 3.5px;
+    padding: 1.5px;
+  }
+
+  .battery-fill {
+    width: 100%;
+    height: 100%;
+    background: var(--color-text);
+    border-radius: 1.5px;
+  }
+</style>

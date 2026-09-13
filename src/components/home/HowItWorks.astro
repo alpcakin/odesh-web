@@ -1,0 +1,125 @@
+---
+import type { Locale } from '@/i18n';
+import { HOME_ANCHORS, getDictionary } from '@/i18n';
+import Icon from '../Icon.astro';
+import type { IconName } from '../Icon.astro';
+
+interface Props {
+  locale: Locale;
+}
+
+const { locale } = Astro.props;
+const t = getDictionary(locale);
+const icons: IconName[] = ['invite', 'split', 'bell', 'check-circle'];
+---
+
+<section id={HOME_ANCHORS[locale].how} class="how">
+  <div class="container section">
+    <div class="intro" data-reveal>
+      <div class="eyebrow">{t.how.eyebrow}</div>
+      <h2 class="section-title">{t.how.title}</h2>
+    </div>
+    <ol class="steps">
+      {
+        t.how.steps.map((s, i) => (
+          <li class="step" data-reveal style={`--reveal-delay: ${i * 80}ms`}>
+            <div class="step-top">
+              <span class="step-number">{i + 1}</span>
+              <Icon name={icons[i] ?? 'check'} size={22} stroke="var(--color-primary)" />
+            </div>
+            <div class="step-text">
+              <div class="step-title">{s.title}</div>
+              <div class="step-body">{s.body}</div>
+            </div>
+          </li>
+        ))
+      }
+    </ol>
+  </div>
+</section>
+
+<style>
+  .how {
+    background: var(--color-surface);
+    border-top: 1px solid var(--color-border);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .section {
+    padding-block: 104px;
+  }
+
+  .intro {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+    max-width: 680px;
+    margin-bottom: 48px;
+  }
+
+  .steps {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 230px), 1fr));
+    gap: 20px;
+  }
+
+  .step {
+    display: flex;
+    flex-direction: column;
+    gap: 16px;
+    padding: 26px;
+    border-radius: 24px;
+    background: var(--color-bg);
+    position: relative;
+    min-height: 220px;
+  }
+
+  .step-top {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+  }
+
+  .step-number {
+    font-size: 13px;
+    font-weight: 700;
+    color: var(--color-primary);
+    background: var(--color-primary-soft);
+    border-radius: 999px;
+    width: 32px;
+    height: 32px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .step-text {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+    margin-top: auto;
+  }
+
+  .step-title {
+    font-size: 19px;
+    font-weight: 700;
+    letter-spacing: -0.01em;
+    line-height: 1.25;
+  }
+
+  .step-body {
+    font-size: 14px;
+    line-height: 1.5;
+    color: var(--color-text-muted);
+    text-wrap: pretty;
+  }
+
+  @media (max-width: 759px) {
+    .section {
+      padding-block: 64px;
+    }
+  }
+</style>

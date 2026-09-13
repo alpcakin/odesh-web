@@ -1,0 +1,500 @@
+---
+import PhoneScreen from './PhoneScreen.astro';
+import Icon from '../Icon.astro';
+
+interface Props {
+  label: string;
+}
+
+const { label } = Astro.props;
+---
+
+<PhoneScreen label={label}>
+  <div class="body">
+    <div class="header">
+      <div>
+        <div class="greeting">Merhaba,</div>
+        <div class="name">Alp</div>
+      </div>
+      <div class="friends-btn">
+        <Icon name="users" size={19} stroke="#fff" />
+        <div class="badge-count">2</div>
+      </div>
+    </div>
+
+    <div class="net-pill">
+      <i></i>
+      <span>Net alacaklısın · +₺1.030,00</span>
+    </div>
+
+    <div class="cards">
+      <div class="card positive">
+        <div class="card-label">Sana borçlu</div>
+        <div class="card-amount tabular">₺1.850,00</div>
+        <div class="card-sub">3 kişi</div>
+      </div>
+      <div class="card negative">
+        <div class="card-label">Borçlusun</div>
+        <div class="card-amount tabular">₺820,00</div>
+        <div class="card-sub">2 kişi</div>
+      </div>
+    </div>
+
+    <div class="chips">
+      <span class="chip positive tabular">+₺1.030,00</span>
+      <span class="chip negative tabular">−€45,00</span>
+    </div>
+
+    <div class="section-label">Borçlar</div>
+
+    <div class="rows">
+      <div class="row">
+        <div class="avatar">EK</div>
+        <div class="row-main">
+          <div class="row-title">Ece</div>
+          <div class="row-sub">Kira · Eylül</div>
+        </div>
+        <div class="copy-btn"><Icon name="copy" size={15} stroke="var(--color-negative)" /></div>
+        <div class="row-amount negative tabular">−₺600,00</div>
+      </div>
+      <div class="divider"></div>
+
+      <div class="row">
+        <div class="avatar group"><Icon name="users" size={18} stroke="var(--color-primary)" /></div>
+        <div class="row-main">
+          <div class="row-title">Kapadokya Gezisi</div>
+          <div class="tag"><Icon name="users" size={9} strokeWidth={2.4} /><span>Grup</span></div>
+        </div>
+        <div class="row-amount positive tabular">+₺1.240,00</div>
+      </div>
+      <div class="divider"></div>
+
+      <div class="row">
+        <div class="avatar">MD</div>
+        <div class="row-main">
+          <div class="row-title-line"><span class="row-title">Mert</span><span class="currency">EUR</span></div>
+          <div class="row-sub">Budapeşte bileti</div>
+        </div>
+        <div class="copy-btn"><Icon name="copy" size={15} stroke="var(--color-negative)" /></div>
+        <div class="row-amount negative tabular">−€45,00</div>
+      </div>
+      <div class="divider"></div>
+
+      <div class="row">
+        <div class="avatar">SB</div>
+        <div class="row-main">
+          <div class="row-title">Selin</div>
+          <div class="row-sub">Akşam yemeği</div>
+        </div>
+        <div class="row-amount positive tabular">+₺390,00</div>
+      </div>
+      <div class="divider"></div>
+
+      <div class="row">
+        <div class="avatar">BA</div>
+        <div class="row-main">
+          <div class="row-title">Bakkal Ahmet</div>
+          <div class="tag"><Icon name="book" size={9} strokeWidth={2.4} /><span>Sanal kişi</span></div>
+        </div>
+        <div class="row-amount negative tabular">−₺220,00</div>
+      </div>
+    </div>
+  </div>
+
+  <div class="fab">
+    <span>Harcama Ekle</span>
+    <i></i>
+    <Icon name="plus" size={26} stroke="#fff" />
+  </div>
+
+  <div class="tabbar">
+    <div class="tabbar-line"></div>
+    <div class="tabs">
+      <div class="tab is-active">
+        <i class="tab-indicator"></i>
+        <Icon name="home" size={22} />
+        <span>Ana Sayfa</span>
+      </div>
+      <div class="tab">
+        <Icon name="users" size={22} class="tab-icon-sm" />
+        <span>Gruplar</span>
+      </div>
+      <div class="tab">
+        <Icon name="activity" size={22} class="tab-icon-sm" />
+        <span>Hareketler</span>
+      </div>
+      <div class="tab">
+        <Icon name="user" size={22} class="tab-icon-sm" />
+        <span>Profil</span>
+      </div>
+    </div>
+  </div>
+</PhoneScreen>
+
+<style>
+  .body {
+    flex: 1;
+    padding: 0 16px;
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
+  }
+
+  .header {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    padding: 20px 0;
+  }
+
+  .greeting {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+
+  .name {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -0.5px;
+    margin-top: 2px;
+    line-height: 32px;
+  }
+
+  .friends-btn {
+    position: relative;
+    width: 44px;
+    height: 44px;
+    border-radius: 22px;
+    background: var(--color-primary);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+  }
+
+  .badge-count {
+    position: absolute;
+    top: -3px;
+    right: -3px;
+    min-width: 18px;
+    height: 18px;
+    border-radius: 9px;
+    background: var(--color-negative);
+    border: 2px solid var(--color-bg);
+    box-sizing: content-box;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 0 4px;
+    font-size: 10px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .net-pill {
+    display: inline-flex;
+    align-self: flex-start;
+    align-items: center;
+    gap: 7px;
+    border-radius: 999px;
+    padding: 7px 13px;
+    margin-bottom: 16px;
+    background: var(--color-positive-soft);
+  }
+
+  .net-pill i {
+    display: block;
+    width: 7px;
+    height: 7px;
+    border-radius: 4px;
+    background: var(--color-positive);
+  }
+
+  .net-pill span {
+    font-size: 13px;
+    font-weight: 600;
+    color: var(--color-positive);
+    font-variant-numeric: tabular-nums;
+    white-space: nowrap;
+  }
+
+  .cards {
+    display: flex;
+    gap: 12px;
+    margin-bottom: 26px;
+  }
+
+  .card {
+    flex: 1;
+    border-radius: 20px;
+    padding: 16px 16px 15px;
+    border: 2px solid transparent;
+  }
+
+  .card.positive {
+    background: var(--color-positive-soft);
+    color: var(--color-positive);
+  }
+
+  .card.negative {
+    background: var(--color-negative-soft);
+    color: var(--color-negative);
+  }
+
+  .card-label {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+  }
+
+  .card-amount {
+    font-size: 26px;
+    font-weight: 700;
+    letter-spacing: -0.8px;
+    margin-top: 8px;
+    line-height: 32px;
+  }
+
+  .card-sub {
+    font-size: 13px;
+    margin-top: 1px;
+  }
+
+  .chips {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    margin-top: -14px;
+    margin-bottom: 8px;
+  }
+
+  .chip {
+    border-radius: 999px;
+    padding: 5px 12px;
+    font-size: 12px;
+    font-weight: 600;
+  }
+
+  .chip.positive {
+    background: var(--color-positive-soft);
+    color: var(--color-positive);
+  }
+
+  .chip.negative {
+    background: var(--color-negative-soft);
+    color: var(--color-negative);
+  }
+
+  .section-label {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.5px;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+    margin: 14px 0 8px;
+    line-height: 16px;
+  }
+
+  .rows {
+    display: flex;
+    flex-direction: column;
+  }
+
+  .row {
+    min-height: 64px;
+    display: flex;
+    align-items: center;
+    padding: 12px 0;
+  }
+
+  .avatar {
+    width: 42px;
+    height: 42px;
+    border-radius: 21px;
+    background: var(--color-primary);
+    color: #fff;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 16.8px;
+    font-weight: 600;
+    margin-right: 12px;
+    flex-shrink: 0;
+  }
+
+  .avatar.group {
+    border-radius: 13px;
+    background: var(--color-primary-soft);
+  }
+
+  .row-main {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
+    min-width: 0;
+  }
+
+  .row-title {
+    font-size: 16px;
+    font-weight: 600;
+    line-height: 22px;
+  }
+
+  .row-title-line {
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .currency {
+    background: var(--color-bg);
+    border-radius: 999px;
+    padding: 1px 6px;
+    font-size: 10px;
+    font-weight: 700;
+    color: var(--color-text-muted);
+  }
+
+  .row-sub {
+    font-size: 14px;
+    color: var(--color-text-muted);
+    line-height: 20px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+  }
+
+  .tag {
+    display: inline-flex;
+    align-self: flex-start;
+    align-items: center;
+    gap: 3px;
+    background: var(--color-primary-soft);
+    border-radius: 999px;
+    padding: 2px 6px;
+    color: var(--color-primary);
+  }
+
+  .tag span {
+    font-size: 10px;
+    font-weight: 600;
+  }
+
+  .copy-btn {
+    width: 34px;
+    height: 34px;
+    border-radius: 17px;
+    background: var(--color-negative-soft);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-right: 8px;
+    flex-shrink: 0;
+  }
+
+  .row-amount {
+    font-size: 16px;
+    font-weight: 600;
+    flex-shrink: 0;
+  }
+
+  .row-amount.negative {
+    color: var(--color-negative);
+  }
+
+  .row-amount.positive {
+    color: var(--color-positive);
+  }
+
+  .divider {
+    height: 1px;
+    background: var(--color-border);
+    margin-left: 54px;
+  }
+
+  .fab {
+    position: absolute;
+    right: 16px;
+    bottom: 114px;
+    height: 62px;
+    border-radius: 31px;
+    background: var(--color-primary);
+    box-shadow: 0 6px 16px rgba(36, 60, 44, 0.4);
+    display: flex;
+    align-items: center;
+    padding: 0 24px 0 32px;
+    gap: 10px;
+  }
+
+  .fab span {
+    font-size: 16px;
+    font-weight: 700;
+    color: #fff;
+  }
+
+  .fab i {
+    display: block;
+    width: 1px;
+    height: 22px;
+    background: rgba(255, 255, 255, 0.25);
+  }
+
+  .tabbar {
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background: var(--color-surface);
+    box-shadow: 0 -3px 12px rgba(0, 0, 0, 0.05);
+    padding-bottom: 34px;
+  }
+
+  .tabbar-line {
+    height: 1px;
+    background: var(--color-border);
+  }
+
+  .tabs {
+    display: flex;
+    height: 64px;
+  }
+
+  .tab {
+    flex: 1;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+    position: relative;
+    color: var(--color-text-muted);
+  }
+
+  .tab.is-active {
+    color: var(--color-primary);
+  }
+
+  .tab span {
+    font-size: 11px;
+    font-weight: 600;
+    letter-spacing: 0.2px;
+    white-space: nowrap;
+  }
+
+  .tab-indicator {
+    position: absolute;
+    top: 0;
+    width: 32px;
+    height: 3px;
+    border-radius: 999px;
+    background: var(--color-primary);
+  }
+
+  .tab :global(.tab-icon-sm) {
+    transform: scale(0.85);
+  }
+</style>

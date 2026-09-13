@@ -1,0 +1,30 @@
+---
+import StatusBar from './StatusBar.astro';
+
+interface Props {
+  label: string;
+  class?: string;
+}
+
+const { label, class: className } = Astro.props;
+---
+
+<div class:list={['screen', className]} role="img" aria-label={label}>
+  <StatusBar />
+  <slot />
+</div>
+
+<style>
+  .screen {
+    width: 390px;
+    height: 844px;
+    background: var(--color-bg);
+    position: relative;
+    overflow: hidden;
+    font-family: var(--font-sans);
+    color: var(--color-text);
+    display: flex;
+    flex-direction: column;
+    user-select: none;
+  }
+</style>

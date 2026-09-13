@@ -1,0 +1,372 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { getCollection, render } from 'astro:content';
+import { LEGAL } from '@/config/site';
+import { SITE } from '@/config/site';
+import { getDictionary, homePath, legalPath } from '@/i18n';
+import BaseLayout from '@/layouts/BaseLayout.astro';
+import Logo from '@/components/Logo.astro';
+import Icon from '@/components/Icon.astro';
+
+export const getStaticPaths = (async () => {
+  const docs = await getCollection('legal');
+  return docs.map((doc) => ({ params: { doc: doc.id }, props: { doc } }));
+}) satisfies GetStaticPaths;
+
+const { doc } = Astro.props;
+const { Content } = await render(doc);
+const allDocs = (await getCollection('legal')).sort((a, b) => a.data.order - b.data.order);
+const t = getDictionary('tr');
+const path = legalPath(doc.id as never);
+---
+
+<BaseLayout locale="tr" title={`${doc.data.title} - odesh`} description={doc.data.description} path={path}>
+  <header class="nav">
+    <div class="container nav-inner">
+      <Logo href={homePath('tr')} crumb="yasal" />
+      <a href={homePath('tr')} class="back"><Icon name="arrow-left" size={16} strokeWidth={2.2} />odesh.app</a>
+    </div>
+  </header>
+
+  <main class="container layout">
+    <aside class="aside">
+      <div class="eyebrow aside-title">Belgeler</div>
+      <nav aria-label="Yasal belgeler" class="doc-nav">
+        {
+          allDocs.map((d) => (
+            <a href={legalPath(d.id as never)} class:list={['doc-link', { 'is-active': d.id === doc.id }]} aria-current={d.id === doc.id ? 'page' : undefined}>
+              <span>{d.data.shortTitle}</span>
+              <span class="version">v{LEGAL.version}</span>
+            </a>
+          ))
+        }
+      </nav>
+      <div class="controller">
+        Veri sorumlusu: <strong>{SITE.author}</strong><br />
+        <a href={`mailto:${SITE.supportEmail}`}>{SITE.supportEmail}</a><br />
+        <span class="small">Bu sayfalar www.alpcakin.com adresinden taşınmıştır.</span>
+      </div>
+    </aside>
+
+    <article class="article">
+      <div class="meta">
+        <span class="version-pill">Versiyon {LEGAL.version}</span>
+        <span class="effective">Yürürlük: {LEGAL.date}</span>
+      </div>
+      <h1 class="title">{doc.data.title}</h1>
+      <p class="subtitle">{doc.data.subtitle}</p>
+      <div class="rule"></div>
+      <div class="prose">
+        <Content />
+      </div>
+    </article>
+  </main>
+
+  <footer class="footer">
+    <div class="container footer-inner">
+      <span>© {SITE.copyrightYear} {SITE.author} · odesh</span>
+      <span>{t.footer.legalNote}</span>
+    </div>
+  </footer>
+</BaseLayout>
+
+<style>
+  .nav {
+    position: sticky;
+    top: 0;
+    z-index: 50;
+    backdrop-filter: blur(14px);
+    -webkit-backdrop-filter: blur(14px);
+    background: rgba(244, 244, 242, 0.85);
+    border-bottom: 1px solid var(--color-border);
+  }
+
+  .nav-inner {
+    height: 64px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 16px;
+  }
+
+  .back {
+    display: inline-flex;
+    align-items: center;
+    gap: 6px;
+    font-size: 14px;
+    font-weight: 600;
+    color: var(--color-primary);
+  }
+
+  .layout {
+    padding-block: 40px 80px;
+    display: grid;
+    grid-template-columns: 260px minmax(0, 1fr);
+    gap: 40px;
+    align-items: start;
+  }
+
+  .aside {
+    position: sticky;
+    top: 88px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .aside-title {
+    padding: 0 12px 8px;
+  }
+
+  .doc-nav {
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .doc-link {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 10px;
+    border-radius: 14px;
+    padding: 12px 14px;
+    font-size: 15px;
+    font-weight: 500;
+    color: var(--color-text-secondary);
+    transition: background 0.2s;
+  }
+
+  .doc-link:hover {
+    background: var(--color-surface-muted);
+    color: var(--color-text-secondary);
+  }
+
+  .doc-link.is-active,
+  .doc-link.is-active:hover {
+    font-weight: 600;
+    color: #fff;
+    background: var(--color-primary);
+  }
+
+  .version {
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--color-text-faint);
+  }
+
+  .doc-link.is-active .version {
+    color: rgba(255, 255, 255, 0.7);
+  }
+
+  .controller {
+    margin-top: 18px;
+    padding: 14px;
+    border-radius: 14px;
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    font-size: 13px;
+    line-height: 1.5;
+    color: var(--color-text-muted);
+  }
+
+  .controller strong {
+    color: var(--color-text);
+    font-weight: 600;
+  }
+
+  .controller a {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .controller .small {
+    font-size: 12px;
+  }
+
+  .article {
+    background: var(--color-surface);
+    border: 1px solid var(--color-border);
+    border-radius: 28px;
+    padding: clamp(24px, 4vw, 56px);
+    min-width: 0;
+    animation: od-rise 0.4s var(--ease-out) both;
+  }
+
+  .meta {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 8px;
+    align-items: center;
+    margin-bottom: 14px;
+  }
+
+  .version-pill {
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 1.2px;
+    text-transform: uppercase;
+    background: var(--color-primary-soft);
+    color: var(--color-primary);
+    border-radius: 999px;
+    padding: 6px 10px;
+  }
+
+  .effective {
+    font-size: 13px;
+    color: var(--color-text-muted);
+  }
+
+  .title {
+    margin: 0 0 10px;
+    font-size: clamp(28px, 3.6vw, 40px);
+    line-height: 1.1;
+    letter-spacing: -0.03em;
+    font-weight: 700;
+    text-wrap: balance;
+  }
+
+  .subtitle {
+    margin: 0 0 28px;
+    font-size: 15px;
+    color: var(--color-text-muted);
+    line-height: 1.5;
+  }
+
+  .rule {
+    height: 1px;
+    background: var(--color-border);
+    margin-bottom: 28px;
+  }
+
+  .prose {
+    font-size: 16px;
+    line-height: 1.65;
+    color: var(--color-text);
+  }
+
+  .prose :global(p) {
+    margin: 0 0 14px;
+  }
+
+  .prose :global(a) {
+    text-decoration: underline;
+    text-underline-offset: 3px;
+  }
+
+  .prose :global(strong) {
+    font-weight: 600;
+  }
+
+  .prose :global(h2) {
+    margin: 36px 0 12px;
+    font-size: 22px;
+    line-height: 1.25;
+    letter-spacing: -0.02em;
+    font-weight: 700;
+  }
+
+  .prose :global(h3) {
+    margin: 26px 0 10px;
+    font-size: 17px;
+    line-height: 1.3;
+    font-weight: 700;
+    color: var(--color-primary);
+  }
+
+  .prose :global(ul),
+  .prose :global(ol) {
+    margin: 0 0 16px;
+    padding-left: 22px;
+    display: flex;
+    flex-direction: column;
+    gap: 6px;
+  }
+
+  .prose :global(hr) {
+    border: 0;
+    border-top: 1px solid var(--color-border);
+    margin: 32px 0;
+  }
+
+  .prose :global(blockquote) {
+    margin: 0 0 16px;
+    background: var(--color-negative-soft);
+    color: var(--color-negative-text);
+    border-radius: 12px;
+    padding: 12px 16px;
+    font-size: 14px;
+    font-weight: 600;
+  }
+
+  .prose :global(blockquote p) {
+    margin: 0;
+  }
+
+  .prose :global(.table-wrap) {
+    overflow-x: auto;
+    margin: 0 0 18px;
+    border: 1px solid var(--color-border);
+    border-radius: 14px;
+  }
+
+  .prose :global(table) {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 14px;
+    line-height: 1.5;
+  }
+
+  .prose :global(th) {
+    text-align: left;
+    padding: 10px 12px;
+    background: var(--color-bg);
+    border-bottom: 1px solid var(--color-border);
+    font-weight: 600;
+    font-size: 12px;
+    letter-spacing: 0.6px;
+    text-transform: uppercase;
+    color: var(--color-text-muted);
+  }
+
+  .prose :global(td) {
+    padding: 10px 12px;
+    border-bottom: 1px solid var(--color-border-soft);
+    vertical-align: top;
+  }
+
+  .prose :global(tr:last-child td) {
+    border-bottom: 0;
+  }
+
+  .prose :global(p:has(> em:only-child)) {
+    font-size: 14px;
+    color: var(--color-text-muted);
+  }
+
+  .footer {
+    border-top: 1px solid var(--color-border);
+    background: var(--color-surface);
+    margin-top: auto;
+  }
+
+  .footer-inner {
+    padding-block: 24px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--color-text-faint);
+  }
+
+  @media (max-width: 899px) {
+    .layout {
+      grid-template-columns: 1fr;
+    }
+
+    .aside {
+      position: static;
+    }
+  }
+</style>

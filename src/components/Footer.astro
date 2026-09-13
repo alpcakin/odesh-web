@@ -1,0 +1,159 @@
+---
+import type { Locale } from '@/i18n';
+import { featurePath, getDictionary, legalPath } from '@/i18n';
+import { SITE } from '@/config/site';
+import BrandMark from './BrandMark.astro';
+
+interface Props {
+  locale: Locale;
+  variant?: 'full' | 'compact';
+}
+
+const { locale, variant = 'full' } = Astro.props;
+const t = getDictionary(locale);
+const copyright = `© ${SITE.copyrightYear} ${SITE.author} · odesh`;
+---
+
+<footer class:list={['footer', variant]}>
+  {
+    variant === 'full' ? (
+      <>
+        <div class="container grid">
+          <div class="brand">
+            <div class="brand-row">
+              <BrandMark width={34} />
+              <span class="wordmark">odesh</span>
+            </div>
+            <p class="tag">{t.footer.tag}</p>
+          </div>
+          <div class="col">
+            <div class="eyebrow col-title">{t.footer.product}</div>
+            <a href={featurePath(locale, 'iban')}>{t.featuresPage.labels.iban}</a>
+            <a href={featurePath(locale, 'bolusme')}>{t.featuresPage.labels.bolusme}</a>
+            <a href={featurePath(locale, 'defter')}>{t.featuresPage.labels.defter}</a>
+            <a href={featurePath(locale, 'doviz')}>{t.featuresPage.labels.doviz}</a>
+          </div>
+          <div class="col">
+            <div class="eyebrow col-title">{t.footer.legal}</div>
+            <a href={legalPath('kosullar')} hreflang="tr">{t.footer.terms}</a>
+            <a href={legalPath('aydinlatma')} hreflang="tr">{t.footer.privacy}</a>
+            <a href={legalPath('veri-silme')} hreflang="tr">{t.footer.deletion}</a>
+          </div>
+          <div class="col">
+            <div class="eyebrow col-title">{t.footer.contact}</div>
+            <a href={`mailto:${SITE.supportEmail}`}>{SITE.supportEmail}</a>
+            <a href={SITE.authorSite} rel="noopener">alpcakin.com</a>
+          </div>
+        </div>
+        <div class="container bottom">
+          <span>{copyright}</span>
+          <span>{t.footer.made}</span>
+        </div>
+      </>
+    ) : (
+      <div class="container compact-row">
+        <span>{copyright}</span>
+        <span class="compact-links">
+          <a href={legalPath('kosullar')} hreflang="tr">{t.footer.terms}</a>
+          <a href={legalPath('aydinlatma')} hreflang="tr">{t.footer.privacy}</a>
+          <a href={`mailto:${SITE.supportEmail}`}>{SITE.supportEmail}</a>
+        </span>
+      </div>
+    )
+  }
+</footer>
+
+<style>
+  .footer {
+    border-top: 1px solid var(--color-border);
+    background: var(--color-surface);
+    margin-top: auto;
+  }
+
+  .grid {
+    padding-block: 48px 36px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(min(100%, 200px), 1fr));
+    gap: 32px;
+  }
+
+  .brand {
+    display: flex;
+    flex-direction: column;
+    gap: 14px;
+  }
+
+  .brand-row {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+  }
+
+  .wordmark {
+    font-size: 20px;
+    font-weight: 700;
+    letter-spacing: -0.4px;
+  }
+
+  .tag {
+    margin: 0;
+    font-size: 14px;
+    line-height: 1.55;
+    color: var(--color-text-muted);
+    max-width: 320px;
+    text-wrap: pretty;
+  }
+
+  .col {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    font-size: 14px;
+  }
+
+  .col a {
+    color: var(--color-text-secondary);
+  }
+
+  .col a:hover {
+    color: var(--color-primary);
+  }
+
+  .col-title {
+    margin-bottom: 4px;
+  }
+
+  .bottom {
+    padding-block: 0 28px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px;
+    font-size: 13px;
+    color: var(--color-text-faint);
+  }
+
+  .compact-row {
+    padding-block: 24px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+    gap: 8px 24px;
+    font-size: 13px;
+    color: var(--color-text-faint);
+  }
+
+  .compact-links {
+    display: flex;
+    gap: 18px;
+    flex-wrap: wrap;
+  }
+
+  .compact-links a {
+    color: var(--color-text-muted);
+  }
+
+  .compact-links a:hover {
+    color: var(--color-primary);
+  }
+</style>
