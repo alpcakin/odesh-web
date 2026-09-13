@@ -80,7 +80,20 @@ export interface Dictionary {
     sub: string;
     iban: { title: string; body: string; hint: string; btn: string; btnDone: string; toast: string; demoName: string; demoHandle: string };
     remind: { title: string; body: string; msg: string; time: string; tags: [string, string, string] };
-    split: { title: string; body: string; hint: string; perPerson: string; amountLabel: string; peopleLabel: string; people: string[] };
+    split: {
+      title: string;
+      body: string;
+      hint: string;
+      amountLabel: string;
+      paidLabel: string;
+      /** Uses the `{n}` placeholder for the share count. */
+      totalShares: string;
+      perShare: string;
+      /** Both use the `{name}` placeholder. */
+      decreaseLabel: string;
+      increaseLabel: string;
+      people: [string, string, string];
+    };
     fx: { title: string; body: string; rows: { code: string; name: string }[] };
   };
   how: { eyebrow: string; title: string; steps: HomeStep[] };
@@ -114,7 +127,6 @@ export interface Dictionary {
     terms: string;
     privacy: string;
     deletion: string;
-    made: string;
     legalNote: string;
   };
   featuresPage: {
