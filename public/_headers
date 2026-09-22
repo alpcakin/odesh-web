@@ -9,3 +9,13 @@
 
 /.well-known/assetlinks.json
   Content-Type: application/json
+
+# Baseline hardening. frame-ancestors 'none' blocks framing (clickjacking) without touching
+# script-src/style-src, so it's safe alongside this site's inline scripts (JSON-LD, the
+# /join deep-link redirect) without a broader CSP rewrite.
+/*
+  Content-Security-Policy: frame-ancestors 'none'
+  X-Frame-Options: DENY
+  X-Content-Type-Options: nosniff
+  Referrer-Policy: strict-origin-when-cross-origin
+  Permissions-Policy: camera=(), microphone=(), geolocation=(), payment=(), usb=()

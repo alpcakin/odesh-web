@@ -1,0 +1,28 @@
+# Per-IP rate limiting for the two live deep-link paths, /join/{token} and
+# /join-group/{token} (see src/pages/404.astro). These aren't static routes — Netlify
+# already serves 404.html for them — so these rules exist only to cap request volume per
+# IP and return 429s past the threshold, on top of Netlify's platform-level DDoS
+# protection and WAF, which run in front of every request regardless of this file.
+# https://docs.netlify.com/manage/security/secure-access-to-sites/rate-limiting/
+
+[[redirects]]
+from = "/join/*"
+to = "/404.html"
+status = 404
+force = true
+
+[redirects.rate_limit]
+window_limit = 20
+window_size = 60
+aggregate_by = ["ip", "domain"]
+
+[[redirects]]
+from = "/join-group/*"
+to = "/404.html"
+status = 404
+force = true
+
+[redirects.rate_limit]
+window_limit = 20
+window_size = 60
+aggregate_by = ["ip", "domain"]
