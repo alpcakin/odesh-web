@@ -8,7 +8,9 @@ Marketing website for the odesh mobile app, served at [odesh.app](https://odesh.
 - Turkish at the root (`/`), English under `/en/`
 - Legal documents as Markdown content collections, Turkish only
 - Self-hosted Inter via Fontsource
-- Deployed to GitHub Pages by GitHub Actions on every push to `main`
+- Deployed by Netlify on every push to `main` (build: `pnpm build`, publish: `dist`). Was on
+  GitHub Pages until 09-22 — moved because of the `.well-known/` issues below; `ci.yml` still runs
+  typecheck+build on PRs, it just doesn't deploy anything.
 
 ## Development
 
@@ -49,23 +51,23 @@ scripts/generate-images.mjs   favicon set and Open Graph image
 | `/yasal/veri-silme/`   | same page                      |
 
 `/join/{token}` and `/join-group/{token}` aren't real routes — they're Supabase-issued runtime
-tokens, so they can't be static-generated. GitHub Pages serves `404.html` for any unmatched path,
-and `src/pages/404.astro` detects those two path shapes client-side and swaps in an "open in
-odesh" view (deep link + store badges) instead of a real 404. Keep this in mind before changing
-404 styling or routing.
+tokens, so they can't be static-generated. Netlify serves `404.html` for any unmatched path, and
+`src/pages/404.astro` detects those two path shapes client-side and swaps in an "open in odesh"
+view (deep link + store badges) instead of a real 404. Keep this in mind before changing 404
+styling or routing.
 
 `public/.well-known/` holds `apple-app-site-association` and `assetlinks.json` for iOS Universal
 Links / Android App Links (mirrors `odesh` app repo's `app.json` `associatedDomains`/
-`intentFilters`, which must point at this same host).
+`intentFilters`, which must point at this same host). `public/_headers` forces
+`Content-Type: application/json` on both — Netlify reads it natively, no extra config.
 
-Two things to know about serving these on GitHub Pages:
-- `actions/upload-pages-artifact` excludes top-level dotfiles/dot-directories **unless**
-  `include-hidden-files: true` is set (see `deploy.yml`) — without it, `.well-known/` silently
-  never reaches the deployed site (404, no build error). Don't remove that flag.
-- **Still-open gap:** GitHub Pages serves the AASA file as `application/octet-stream`, not
-  `application/json`, and there's no way to override response headers on GitHub Pages itself.
-  `public/_headers` documents the fix (Cloudflare Transform Rule, or hosting that reads
-  `_headers`) but has no effect until one is applied.
+**History (why this isn't on GitHub Pages anymore):** it was, until 09-22. Two problems compounded
+there: `actions/upload-pages-artifact` excludes top-level dotfiles/dot-directories by default, so
+`.well-known/` silently never reached the deployed site (404, no build error) until
+`include-hidden-files: true` was added; separately, GitHub Pages has no way to override response
+headers at all, so even once the files deployed, the AASA file came back as
+`application/octet-stream` instead of `application/json` and Universal Links wouldn't verify. Both
+are moot on Netlify, but if this ever moves again, check for both.
 
 ## Going live in the stores
 
