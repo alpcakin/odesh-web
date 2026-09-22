@@ -56,9 +56,16 @@ odesh" view (deep link + store badges) instead of a real 404. Keep this in mind 
 
 `public/.well-known/` holds `apple-app-site-association` and `assetlinks.json` for iOS Universal
 Links / Android App Links (mirrors `odesh` app repo's `app.json` `associatedDomains`/
-`intentFilters`, which must point at this same host). **Known gap:** GitHub Pages serves the AASA
-file as `application/octet-stream`, not `application/json`; `public/_headers` documents the fix
-(Cloudflare Transform Rule, or hosting that reads `_headers`) but has no effect until one is applied.
+`intentFilters`, which must point at this same host).
+
+Two things to know about serving these on GitHub Pages:
+- `actions/upload-pages-artifact` excludes top-level dotfiles/dot-directories **unless**
+  `include-hidden-files: true` is set (see `deploy.yml`) — without it, `.well-known/` silently
+  never reaches the deployed site (404, no build error). Don't remove that flag.
+- **Still-open gap:** GitHub Pages serves the AASA file as `application/octet-stream`, not
+  `application/json`, and there's no way to override response headers on GitHub Pages itself.
+  `public/_headers` documents the fix (Cloudflare Transform Rule, or hosting that reads
+  `_headers`) but has no effect until one is applied.
 
 ## Going live in the stores
 
