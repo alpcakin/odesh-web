@@ -43,6 +43,12 @@ jobs:
         uses: actions/upload-pages-artifact@v5
         with:
           path: dist
+          # Default false: the action's tar step excludes any top-level dotfile/dot-directory
+          # (`--exclude=.[^/]*`), which silently drops public/.well-known/ (AASA, assetlinks.json)
+          # on every deploy — no build error, the files just 404 live. Universal Links/App Links
+          # verification fails as a result. Found with `gh run view --log` (tar command is logged);
+          # not documented anywhere obvious.
+          include-hidden-files: true
 
   deploy:
     needs: build
