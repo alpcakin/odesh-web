@@ -1,0 +1,11 @@
+{
+  "applinks": {
+    "apps": [],
+    "details": [
+      {
+        "appID": "3BVBH83DC8.com.odesh.app",
+        "paths": ["/join/*", "/join-group/*"]
+      }
+    ]
+  }
+}

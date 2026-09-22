@@ -4,6 +4,7 @@ shortTitle: "Kullanım Koşulları"
 subtitle: "odesh mobil uygulamasının kullanımına ilişkin koşullar. Geliştirici: Alp Çakın · İletişim: support@alpcakin.com"
 description: "odesh mobil uygulamasının Kullanım Koşulları. Hizmetin niteliği, kullanıcı yükümlülükleri, hatırlatma özelliği, sorumluluk sınırları ve iletişim."
 order: 1
+version: "1.1"
 ---
 
 Bu Kullanım Koşulları ("Koşullar"), odesh mobil uygulamasını ("Uygulama") kullanan kişiler ("Kullanıcı") ile Uygulama'nın geliştiricisi Alp Çakın ("Geliştirici") arasındaki ilişkiyi düzenler. Uygulamayı kullanarak bu Koşullar'ı kabul etmiş olursunuz. Kişisel verilerinizin işlenmesi ayrı bir belge olan Aydınlatma Metni'nde açıklanmıştır.

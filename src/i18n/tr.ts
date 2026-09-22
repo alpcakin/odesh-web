@@ -12,6 +12,13 @@ export const tr: Dictionary = {
     notFoundCta: 'Ana sayfaya dön',
     langName: 'Türkçe',
   },
+  join: {
+    title: "Bu davet odesh'te açılıyor",
+    body: "odesh yüklüyse aşağıdaki düğmeyle uygulamada aç. Yüklü değilse önce indir, davet bağlantısı uygulamayı ilk açışında da geçerli kalır.",
+    openCta: "odesh'i Aç",
+    storeLabel: 'İndir',
+    fallbackNote: "Düğme çalışmazsa odesh'i indirip bu bağlantıyı tekrar açman yeterli.",
+  },
   nav: {
     features: 'Özellikler',
     how: 'Nasıl çalışır',

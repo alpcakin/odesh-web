@@ -12,6 +12,13 @@ export const en: Dictionary = {
     notFoundCta: 'Back to home',
     langName: 'English',
   },
+  join: {
+    title: 'This invite opens in odesh',
+    body: 'If odesh is installed, use the button below to open it there. If not, install it first — the invite link still works the first time you open the app.',
+    openCta: 'Open odesh',
+    storeLabel: 'Download',
+    fallbackNote: "If the button doesn't work, install odesh and open this link again.",
+  },
   nav: {
     features: 'Features',
     how: 'How it works',

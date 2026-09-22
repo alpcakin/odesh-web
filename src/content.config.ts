@@ -10,6 +10,8 @@ const legal = defineCollection({
     subtitle: z.string(),
     description: z.string(),
     order: z.number().int(),
+    /** Matches the app's constants/legal.ts TERMS_VERSION/PRIVACY_VERSION; omit for undocumented docs (veri-silme). */
+    version: z.string().optional(),
   }),
 });
 

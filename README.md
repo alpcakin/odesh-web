@@ -48,6 +48,18 @@ scripts/generate-images.mjs   favicon set and Open Graph image
 | `/yasal/aydinlatma/`   | same page                      |
 | `/yasal/veri-silme/`   | same page                      |
 
+`/join/{token}` and `/join-group/{token}` aren't real routes — they're Supabase-issued runtime
+tokens, so they can't be static-generated. GitHub Pages serves `404.html` for any unmatched path,
+and `src/pages/404.astro` detects those two path shapes client-side and swaps in an "open in
+odesh" view (deep link + store badges) instead of a real 404. Keep this in mind before changing
+404 styling or routing.
+
+`public/.well-known/` holds `apple-app-site-association` and `assetlinks.json` for iOS Universal
+Links / Android App Links (mirrors `odesh` app repo's `app.json` `associatedDomains`/
+`intentFilters`, which must point at this same host). **Known gap:** GitHub Pages serves the AASA
+file as `application/octet-stream`, not `application/json`; `public/_headers` documents the fix
+(Cloudflare Transform Rule, or hosting that reads `_headers`) but has no effect until one is applied.
+
 ## Going live in the stores
 
 Set `storesLive: true` and the real store URLs in `src/config/site.ts`. The badges become links and the labels switch from "Yakında" to "İndir".

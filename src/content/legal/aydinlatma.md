@@ -4,6 +4,7 @@ shortTitle: "Aydınlatma Metni"
 subtitle: "KVKK m.10 kapsamında aydınlatma. Veri sorumlusu: Alp Çakın (gerçek kişi, Türkiye) · İletişim: support@alpcakin.com"
 description: "odesh uygulamasının KVKK kapsamındaki Aydınlatma Metni. İşlenen veriler, amaçlar, aktarılan taraflar, saklama süreleri ve ilgili kişi hakları."
 order: 2
+version: "1.2"
 ---
 
 ## 1. Veri Sorumlusu
@@ -25,7 +26,7 @@ order: 2
 | Teknik | Cihaz push bildirim anahtarı ve platformu (iOS/Android); Apple ile giriş kullanıldıysa Apple'ın verdiği yenileme anahtarı | Bildirim gönderimi; hesap silinirken Apple erişiminin iptali | Sözleşmenin ifası (m.5/2-c) |
 | Güvenlik ve işlem kayıtları | Oturum açma/kapama olayları, IP adresi, zaman damgası, istek kayıtları | Hizmet güvenliği, kötüye kullanım ve dolandırıcılık tespiti, hata giderme | Meşru menfaat (m.5/2-f) |
 | Hata kaydı | Uygulama çökme/hata kaydı: hata mesajı, yığın izi, uygulama sürümü, cihaz modeli, işletim sistemi sürümü | Hataların teşhisi ve giderilmesi | Meşru menfaat (m.5/2-f) |
-| Kullanım analitiği | Hangi ekranın açıldığı, hangi akış adımının tamamlandığı, olay sayaçları; cihaz modeli, işletim sistemi sürümü, uygulama sürümü; geri çevrilemez şekilde türetilmiş takma kullanıcı kimliği; IP adresinden türetilen ülke düzeyinde yaklaşık konum | Akışlardaki tıkanma noktalarının ve kullanılmayan özelliklerin tespiti, uygulamanın iyileştirilmesi | Meşru menfaat (m.5/2-f). Ayarlar'dan her zaman kapatılabilir (bkz. bölüm 3) |
+| Kullanım analitiği | Hangi ekranın açıldığı, hangi akış adımının tamamlandığı, olay sayaçları; cihaz modeli, işletim sistemi sürümü, uygulama sürümü; geri çevrilemez şekilde türetilmiş takma kullanıcı kimliği. IP adresi saklanmaz ve IP'den konum türetilmez | Akışlardaki tıkanma noktalarının ve kullanılmayan özelliklerin tespiti, uygulamanın iyileştirilmesi | Meşru menfaat (m.5/2-f). Ayarlar'dan her zaman kapatılabilir (bkz. bölüm 3) |
 | Üçüncü kişi verisi | Uygulamayı kullanmayan bir kişi için girdiğiniz ad ve isteğe bağlı IBAN ("Defter" ve "sanal üye") | Kendi borç ilişkinizi takip etmeniz | Meşru menfaat (m.5/2-f); ayrıntı bölüm 2.2 |
 
 IBAN ve finansal kayıtlar KVKK anlamında özel nitelikli kişisel veri değildir; ancak hassas nitelikleri nedeniyle m.12 kapsamında ek teknik ve idari tedbirlerle korunur (bkz. "Veri Güvenliği Tedbirleri"). Özel nitelikli kişisel veri (sağlık, din, biyometrik veri vb.) hiçbir şekilde talep edilmez ve işlenmez.

@@ -1,0 +1,11 @@
+# Netlify/Cloudflare Pages header rules. Ignored by GitHub Pages (current host) — GitHub Pages
+# serves .well-known/apple-app-site-association as application/octet-stream and has no way to
+# override it (no server config access). If iOS Universal Links don't verify on odesh.app, this
+# is why. Fix is one of: (a) put Cloudflare in front of this domain and add a Transform Rule
+# (Rules > Overview > Response Header) setting Content-Type: application/json for these two
+# paths, or (b) move hosting to a platform (Cloudflare Pages, Netlify) that reads this file.
+/.well-known/apple-app-site-association
+  Content-Type: application/json
+
+/.well-known/assetlinks.json
+  Content-Type: application/json

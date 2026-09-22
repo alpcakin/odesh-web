@@ -36,7 +36,7 @@ const path = legalPath(doc.id as never);
           allDocs.map((d) => (
             <a href={legalPath(d.id as never)} class:list={['doc-link', { 'is-active': d.id === doc.id }]} aria-current={d.id === doc.id ? 'page' : undefined}>
               <span>{d.data.shortTitle}</span>
-              <span class="version">v{LEGAL.version}</span>
+              {d.data.version && <span class="version">v{d.data.version}</span>}
             </a>
           ))
         }
@@ -50,7 +50,7 @@ const path = legalPath(doc.id as never);
 
     <article class="article">
       <div class="meta">
-        <span class="version-pill">Versiyon {LEGAL.version}</span>
+        {doc.data.version && <span class="version-pill">Versiyon {doc.data.version}</span>}
         <span class="effective">Yürürlük: {LEGAL.date}</span>
       </div>
       <h1 class="title">{doc.data.title}</h1>

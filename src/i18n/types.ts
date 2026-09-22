@@ -54,6 +54,13 @@ export interface Dictionary {
     notFoundCta: string;
     langName: string;
   };
+  join: {
+    title: string;
+    body: string;
+    openCta: string;
+    storeLabel: string;
+    fallbackNote: string;
+  };
   nav: {
     features: string;
     how: string;

@@ -2,35 +2,84 @@
 import { getDictionary, homePath } from '@/i18n';
 import BaseLayout from '@/layouts/BaseLayout.astro';
 import BrandMark from '@/components/BrandMark.astro';
+import StoreBadges from '@/components/StoreBadges.astro';
 
 const tr = getDictionary('tr');
 const en = getDictionary('en');
 ---
 
 <BaseLayout locale="tr" title={`${tr.meta.notFoundTitle} - odesh`} description={tr.meta.notFoundBody} path="/404/" noindex>
+  <!--
+    GitHub Pages serves this file for ANY unmatched path, including /join/{token} and
+    /join-group/{token} — those tokens are runtime UUIDs, so they can't be pre-rendered as static
+    routes. The script below detects that case client-side and swaps in the "open in app" view
+    instead of a real 404. The token never leaves the browser (no analytics on this site, and we
+    don't send it anywhere) — it only gets embedded in the odesh:// deep link href.
+  -->
   <main class="wrap">
-    <BrandMark width={72} />
-    <div class="code">404</div>
-    <h1 class="title">{tr.meta.notFoundTitle}</h1>
-    <p class="body">{tr.meta.notFoundBody}</p>
-    <p class="body en" lang="en">{en.meta.notFoundBody}</p>
-    <div class="actions">
-      <a href={homePath('tr')} class="btn">{tr.meta.notFoundCta}</a>
-      <a href={homePath('en')} class="btn ghost" lang="en" hreflang="en">{en.meta.notFoundCta}</a>
+    <div id="notfound-view" class="view">
+      <BrandMark width={72} />
+      <div class="code">404</div>
+      <h1 class="title">{tr.meta.notFoundTitle}</h1>
+      <p class="body">{tr.meta.notFoundBody}</p>
+      <p class="body en" lang="en">{en.meta.notFoundBody}</p>
+      <div class="actions">
+        <a href={homePath('tr')} class="btn">{tr.meta.notFoundCta}</a>
+        <a href={homePath('en')} class="btn ghost" lang="en" hreflang="en">{en.meta.notFoundCta}</a>
+      </div>
+    </div>
+
+    <div id="join-view" class="view" hidden>
+      <BrandMark width={72} />
+      <h1 class="title">{tr.join.title}</h1>
+      <p class="body">{tr.join.body}</p>
+      <p class="body en" lang="en">{en.join.body}</p>
+      <div class="actions">
+        <a href="/" id="join-open-btn" class="btn">{tr.join.openCta}</a>
+      </div>
+      <StoreBadges topLabel={tr.join.storeLabel} id="join-store-badges" />
+      <p class="fallback-note">{tr.join.fallbackNote}</p>
     </div>
   </main>
 </BaseLayout>
+
+<script>
+  const match = window.location.pathname.match(/^\/(join|join-group)\/([^/]+)\/?$/);
+
+  if (match && match[1] && match[2]) {
+    const kind = match[1];
+    const token = match[2];
+    const deepLink = `odesh://${kind}/${encodeURIComponent(token)}`;
+
+    document.getElementById('notfound-view')?.setAttribute('hidden', '');
+    document.getElementById('join-view')?.removeAttribute('hidden');
+
+    const openBtn = document.getElementById('join-open-btn');
+    if (openBtn instanceof HTMLAnchorElement) {
+      openBtn.href = deepLink;
+    }
+
+    // Best-effort auto-open. If odesh isn't installed this fails silently (or the OS shows its
+    // own "open in app?" prompt) and the manual button + store badges above stay as the fallback.
+    window.location.href = deepLink;
+  }
+</script>
 
 <style>
   .wrap {
     flex: 1;
     display: flex;
-    flex-direction: column;
     align-items: center;
     justify-content: center;
     text-align: center;
-    gap: 14px;
     padding: 64px var(--gutter);
+  }
+
+  .view {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 14px;
   }
 
   .code {
@@ -58,6 +107,13 @@ const en = getDictionary('en');
 
   .body.en {
     font-size: 14px;
+  }
+
+  .fallback-note {
+    margin: 4px 0 0;
+    font-size: 13px;
+    color: var(--color-text-faint);
+    max-width: 380px;
   }
 
   .actions {
