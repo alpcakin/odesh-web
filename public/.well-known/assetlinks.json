@@ -5,8 +5,10 @@
       "namespace": "android_app",
       "package_name": "com.odesh.mobile",
       "sha256_cert_fingerprints": [
+        "3B:79:A7:B6:83:B5:7D:F9:D3:40:CF:09:2A:7A:BD:63:4B:20:4E:44:46:B0:22:46:D6:25:BB:64:C8:43:14:D0",
+        "1B:9F:4B:1C:97:4D:0C:9B:0B:4A:AE:8F:6C:1B:D9:E1:C6:01:FC:D1:30:16:9E:2E:8A:FA:78:F5:F8:7D:D9:F5",
         "2A:4A:7B:B0:08:FB:A7:13:EE:72:C9:05:C1:EC:87:E8:6D:EC:9B:8E:81:2B:B8:96:7E:E3:93:D9:9F:FC:A0:E4",
-        "1B:9F:4B:1C:97:4D:0C:9B:0B:4A:AE:8F:6C:1B:D9:E1:C6:01:FC:D1:30:16:9E:2E:8A:FA:78:F5:F8:7D:D9:F5"
+        "B5:C0:37:EC:87:38:A9:1D:4F:0B:9E:1D:97:B0:1A:7E:FD:1F:E4:99:90:EA:10:E1:16:53:4C:89:3E:B9:EA:7E"
       ]
     }
   }
