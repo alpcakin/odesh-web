@@ -43,8 +43,7 @@ const path = legalPath(doc.id as never);
       </nav>
       <div class="controller">
         Veri sorumlusu: <strong>{SITE.author}</strong><br />
-        <a href={`mailto:${SITE.supportEmail}`}>{SITE.supportEmail}</a><br />
-        <span class="small">Bu sayfalar www.alpcakin.com adresinden taşınmıştır.</span>
+        <a href={`mailto:${SITE.supportEmail}`}>{SITE.supportEmail}</a>
       </div>
     </aside>
 
@@ -178,10 +177,6 @@ const path = legalPath(doc.id as never);
   .controller a {
     text-decoration: underline;
     text-underline-offset: 3px;
-  }
-
-  .controller .small {
-    font-size: 12px;
   }
 
   .article {
