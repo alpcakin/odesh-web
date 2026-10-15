@@ -5,7 +5,7 @@ export const en: Dictionary = {
     siteTitle: 'odesh',
     homeTitle: 'odesh - Who owes whom, at a glance',
     homeDescription:
-      'Split expenses with friends, see every open balance in one list, copy an IBAN in a single tap. odesh does the reminding, so you keep the friendship. Free, no ads. Coming soon on iOS and Android.',
+      'Split expenses with friends, see every open balance in one list, copy an IBAN in a single tap. odesh does the reminding, so you keep the friendship. Free, no ads. On the App Store in Türkiye; more countries and Android coming soon.',
     featuresTitleSuffix: 'odesh features',
     notFoundTitle: 'Page not found',
     notFoundBody: 'The page you are looking for may have moved or never existed.',
@@ -30,7 +30,7 @@ export const en: Dictionary = {
     menuLabel: 'Menu',
   },
   hero: {
-    eyebrow: 'Coming soon · iOS and Android',
+    eyebrow: 'On the App Store in Türkiye · Android soon',
     title1: 'Who owes whom,',
     title2: 'at a glance.',
     sub: 'Log the expense, split it with friends, copy their IBAN in one tap. odesh does the reminding, so you keep the friendship.',
@@ -123,7 +123,7 @@ export const en: Dictionary = {
       { icon: 'toggle', title: 'Analytics under your control', body: 'Turn usage sharing off in Settings. Even when it is on, your name, IBAN and debt amounts are never sent.' },
       { icon: 'trash', title: 'Delete your account, done', body: 'Instantly from the Profile screen. Your data is removed from all systems within 30 days.' },
     ],
-    privacyLink: 'Privacy Notice',
+    privacyLink: 'Privacy Policy',
     termsLink: 'Terms of Use',
     deleteLink: 'Account and Data Deletion',
   },
@@ -161,7 +161,7 @@ export const en: Dictionary = {
       },
       {
         q: 'Where is my data stored?',
-        a: 'In the European Union, in Ireland. No advertising ID, no data sales. The details are in the Privacy Notice.',
+        a: 'In the European Union, in Ireland. No advertising ID, no data sales. The details are in the Privacy Policy.',
       },
       {
         q: 'What happens if I delete my account?',
@@ -170,8 +170,8 @@ export const en: Dictionary = {
     ],
   },
   cta: {
-    title: 'Coming soon to the App Store and Google Play.',
-    sub: 'Free, no ads, no data sales. The store links will appear here the day odesh launches.',
+    title: 'On the App Store in Türkiye. More countries and Google Play soon.',
+    sub: 'Free, no ads, no data sales. New countries and the Android version will appear here as they launch.',
   },
   footer: {
     tag: 'A debt-tracking app designed for Turkey. Who owes whom, at a glance.',
@@ -179,9 +179,17 @@ export const en: Dictionary = {
     legal: 'Legal',
     contact: 'Contact',
     terms: 'Terms of Use',
-    privacy: 'Privacy Notice',
+    privacy: 'Privacy Policy',
     deletion: 'Account and Data Deletion',
-    legalNote: 'The Turkish text prevails; translations are provided for convenience.',
+    legalNote: 'Also available in Turkish.',
+  },
+  legalPage: {
+    crumb: 'legal',
+    documents: 'Documents',
+    navLabel: 'Legal documents',
+    controller: 'Controller',
+    version: 'Version',
+    effective: 'Effective',
   },
   featuresPage: {
     crumb: 'features',

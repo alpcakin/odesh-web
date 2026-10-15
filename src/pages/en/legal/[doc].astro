@@ -1,0 +1,15 @@
+---
+import type { GetStaticPaths } from 'astro';
+import { getCollection } from 'astro:content';
+import { legalSlug, type LegalDocId } from '@/i18n';
+import LegalPage from '@/components/LegalPage.astro';
+
+export const getStaticPaths = (async () => {
+  const docs = await getCollection('legalEn');
+  return docs.map((doc) => ({ params: { doc: legalSlug('en', doc.id as LegalDocId) }, props: { doc, allDocs: docs } }));
+}) satisfies GetStaticPaths;
+
+const { doc, allDocs } = Astro.props;
+---
+
+<LegalPage locale="en" doc={doc} allDocs={allDocs} />

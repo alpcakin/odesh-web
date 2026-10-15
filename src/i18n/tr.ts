@@ -5,7 +5,7 @@ export const tr: Dictionary = {
     siteTitle: 'odesh',
     homeTitle: 'odesh - Kim kime ne borçlu, bir bakışta',
     homeDescription:
-      "Arkadaşlarınla harcamaları böl, açık borçları tek listede gör, IBAN'ı tek dokunuşla kopyala. Hatırlatmayı odesh yapar, sen aranı bozmazsın. Ücretsiz ve reklamsız. Yakında iOS ve Android'de.",
+      "Arkadaşlarınla harcamaları böl, açık borçları tek listede gör, IBAN'ı tek dokunuşla kopyala. Hatırlatmayı odesh yapar, sen aranı bozmazsın. Ücretsiz ve reklamsız. App Store'da, Android yakında.",
     featuresTitleSuffix: 'odesh özellikleri',
     notFoundTitle: 'Sayfa bulunamadı',
     notFoundBody: 'Aradığın sayfa taşınmış ya da hiç var olmamış olabilir.',
@@ -30,7 +30,7 @@ export const tr: Dictionary = {
     menuLabel: 'Menü',
   },
   hero: {
-    eyebrow: 'Yakında · iOS ve Android',
+    eyebrow: "App Store'da · Android yakında",
     title1: 'Kim kime ne borçlu,',
     title2: 'bir bakışta.',
     sub: "Harcamayı gir, arkadaşlarınla böl, IBAN'ı tek dokunuşla kopyala. Hatırlatmayı odesh yapar, sen aranı bozmazsın.",
@@ -170,8 +170,8 @@ export const tr: Dictionary = {
     ],
   },
   cta: {
-    title: 'Yakında App Store ve Google Play’de.',
-    sub: 'Ücretsiz, reklamsız, veri satışı yok. Mağaza bağlantıları yayına çıktığı gün burada olacak.',
+    title: 'App Store’da. Google Play’de yakında.',
+    sub: 'Ücretsiz, reklamsız, veri satışı yok. Android sürümü yayına çıktığı gün burada olacak.',
   },
   footer: {
     tag: 'Türkiye için tasarlanmış borç takip uygulaması. Kim kime ne borçlu, bir bakışta.',
@@ -182,6 +182,14 @@ export const tr: Dictionary = {
     privacy: 'Aydınlatma Metni',
     deletion: 'Hesap ve Veri Silme',
     legalNote: 'Türkçe metin esas alınır; çeviriler kolaylık amaçlıdır.',
+  },
+  legalPage: {
+    crumb: 'yasal',
+    documents: 'Belgeler',
+    navLabel: 'Yasal belgeler',
+    controller: 'Veri sorumlusu',
+    version: 'Versiyon',
+    effective: 'Yürürlük',
   },
   featuresPage: {
     crumb: 'özellikler',

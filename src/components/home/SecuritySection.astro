@@ -32,9 +32,9 @@ const ICON_MAP: Record<string, IconName> = { map: 'globe', eyeoff: 'eye-off', lo
       }
     </div>
     <div class="links">
-      <a href={legalPath('aydinlatma')} hreflang="tr">{t.security.privacyLink}</a>
-      <a href={legalPath('kosullar')} hreflang="tr">{t.security.termsLink}</a>
-      <a href={legalPath('veri-silme')} hreflang="tr">{t.security.deleteLink}</a>
+      <a href={legalPath('aydinlatma', locale)} hreflang={locale}>{t.security.privacyLink}</a>
+      <a href={legalPath('kosullar', locale)} hreflang={locale}>{t.security.termsLink}</a>
+      <a href={legalPath('veri-silme', locale)} hreflang={locale}>{t.security.deleteLink}</a>
     </div>
   </div>
 </section>

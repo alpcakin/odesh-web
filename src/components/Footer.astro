@@ -35,9 +35,9 @@ const copyright = `© ${SITE.copyrightYear} ${SITE.author} · odesh`;
           </div>
           <div class="col">
             <div class="eyebrow col-title">{t.footer.legal}</div>
-            <a href={legalPath('kosullar')} hreflang="tr">{t.footer.terms}</a>
-            <a href={legalPath('aydinlatma')} hreflang="tr">{t.footer.privacy}</a>
-            <a href={legalPath('veri-silme')} hreflang="tr">{t.footer.deletion}</a>
+            <a href={legalPath('kosullar', locale)} hreflang={locale}>{t.footer.terms}</a>
+            <a href={legalPath('aydinlatma', locale)} hreflang={locale}>{t.footer.privacy}</a>
+            <a href={legalPath('veri-silme', locale)} hreflang={locale}>{t.footer.deletion}</a>
           </div>
           <div class="col">
             <div class="eyebrow col-title">{t.footer.contact}</div>
@@ -54,8 +54,8 @@ const copyright = `© ${SITE.copyrightYear} ${SITE.author} · odesh`;
       <div class="container compact-row">
         <span>{copyright}</span>
         <span class="compact-links">
-          <a href={legalPath('kosullar')} hreflang="tr">{t.footer.terms}</a>
-          <a href={legalPath('aydinlatma')} hreflang="tr">{t.footer.privacy}</a>
+          <a href={legalPath('kosullar', locale)} hreflang={locale}>{t.footer.terms}</a>
+          <a href={legalPath('aydinlatma', locale)} hreflang={locale}>{t.footer.privacy}</a>
           <a href={`mailto:${SITE.supportEmail}`}>{SITE.supportEmail}</a>
         </span>
       </div>

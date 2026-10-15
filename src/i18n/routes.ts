@@ -47,9 +47,21 @@ export function featureSlug(locale: Locale, id: FeatureId): string {
   return FEATURE_SLUGS[locale][id];
 }
 
-/** Legal documents are Turkish only and are not localized (Terms of Use, section 12). */
-export function legalPath(doc: LegalDocId): string {
-  return `/yasal/${doc}/`;
+// Legal documents exist in both languages with the same version number (Terms of Use section 12: the version in
+// the language you accepted prevails). Ids are the Turkish slugs; English pages live under /en/legal/.
+const LEGAL_SLUGS: Record<Locale, Record<LegalDocId, string>> = {
+  tr: { kosullar: 'kosullar', aydinlatma: 'aydinlatma', 'veri-silme': 'veri-silme' },
+  en: { kosullar: 'terms', aydinlatma: 'privacy', 'veri-silme': 'data-deletion' },
+};
+
+const LEGAL_BASE: Record<Locale, string> = { tr: '/yasal', en: '/en/legal' };
+
+export function legalPath(doc: LegalDocId, locale: Locale = 'tr'): string {
+  return `${LEGAL_BASE[locale]}/${LEGAL_SLUGS[locale][doc]}/`;
+}
+
+export function legalSlug(locale: Locale, doc: LegalDocId): string {
+  return LEGAL_SLUGS[locale][doc];
 }
 
 export function absoluteUrl(site: string, path: string): string {

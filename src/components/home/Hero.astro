@@ -15,7 +15,6 @@ interface Props {
 
 const { locale } = Astro.props;
 const t = getDictionary(locale);
-const storeTop = SITE.storesLive ? t.hero.storeTopLive : t.hero.storeTop;
 ---
 
 <section class="hero">
@@ -31,7 +30,7 @@ const storeTop = SITE.storesLive ? t.hero.storeTopLive : t.hero.storeTop;
         <span class="highlight">{t.hero.title2}<i aria-hidden="true"></i></span>
       </h1>
       <p class="sub">{t.hero.sub}</p>
-      <StoreBadges topLabel={storeTop} id={HOME_ANCHORS[locale].download} />
+      <StoreBadges liveLabel={t.hero.storeTopLive} soonLabel={t.hero.storeTop} id={HOME_ANCHORS[locale].download} />
     </div>
 
     <div class="stage" data-hero-stage aria-label={t.hero.stageLabel}>

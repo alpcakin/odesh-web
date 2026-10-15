@@ -1,7 +1,6 @@
 ---
 import type { Locale } from '@/i18n';
 import { getDictionary } from '@/i18n';
-import { SITE } from '@/config/site';
 import StoreBadges from '../StoreBadges.astro';
 
 interface Props {
@@ -10,7 +9,6 @@ interface Props {
 
 const { locale } = Astro.props;
 const t = getDictionary(locale);
-const storeTop = SITE.storesLive ? t.hero.storeTopLive : t.hero.storeTop;
 ---
 
 <section class="container cta-wrap">
@@ -22,7 +20,7 @@ const storeTop = SITE.storesLive ? t.hero.storeTopLive : t.hero.storeTop;
     <h2 class="title">{t.cta.title}</h2>
     <p class="sub">{t.cta.sub}</p>
     <div class="badges">
-      <StoreBadges topLabel={storeTop} />
+      <StoreBadges liveLabel={t.hero.storeTopLive} soonLabel={t.hero.storeTop} />
     </div>
   </div>
 </section>

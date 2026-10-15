@@ -6,7 +6,7 @@ Marketing website for the odesh mobile app, served at [odesh.app](https://odesh.
 
 - [Astro](https://astro.build) static output, no client framework
 - Turkish at the root (`/`), English under `/en/`
-- Legal documents as Markdown content collections, Turkish only
+- Legal documents as Markdown content collections, Turkish (`content/legal`) and English (`content/legal-en`), same version numbers
 - Self-hosted Inter via Fontsource
 - Deployed by Netlify on every push to `main` (build: `pnpm build`, publish: `dist`). Was on
   GitHub Pages until 09-22 — moved because of the `.well-known/` issues below; `ci.yml` still runs
@@ -31,7 +31,8 @@ src/
   config/site.ts         site-wide constants (store links, legal version)
   i18n/                  route helpers and TR / EN dictionaries
   components/            layout pieces, home sections, phone mockups
-  content/legal/         Kullanım Koşulları, Aydınlatma Metni, Veri Silme
+  content/legal/         Kullanım Koşulları, Aydınlatma Metni, Veri Silme (TR)
+  content/legal-en/      Terms of Use, Privacy Policy, Data Deletion (EN, same file names)
   pages/                 index, en/, ozellikler/, en/features/, yasal/, 404
   scripts/               small client scripts (carousel, demos, reveal)
 scripts/generate-images.mjs   favicon set and Open Graph image
@@ -46,9 +47,9 @@ scripts/generate-images.mjs   favicon set and Open Graph image
 | `/ozellikler/bolusme/` | `/en/features/splitting/`      |
 | `/ozellikler/defter/`  | `/en/features/ledger/`         |
 | `/ozellikler/doviz/`   | `/en/features/multi-currency/` |
-| `/yasal/kosullar/`     | same page (Turkish prevails)   |
-| `/yasal/aydinlatma/`   | same page                      |
-| `/yasal/veri-silme/`   | same page                      |
+| `/yasal/kosullar/`     | `/en/legal/terms/`             |
+| `/yasal/aydinlatma/`   | `/en/legal/privacy/`           |
+| `/yasal/veri-silme/`   | `/en/legal/data-deletion/`     |
 
 `/join/{token}` and `/join-group/{token}` aren't real routes — they're Supabase-issued runtime
 tokens, so they can't be static-generated. Netlify serves `404.html` for any unmatched path, and
@@ -71,7 +72,9 @@ are moot on Netlify, but if this ever moves again, check for both.
 
 ## Going live in the stores
 
-Set `storesLive: true` and the real store URLs in `src/config/site.ts`. The badges become links and the labels switch from "Yakında" to "İndir".
+Per store in `src/config/site.ts`: set `appStoreLive` / `playStoreLive` to `true` with the real URL. That badge becomes a
+link labelled "İndir"; a store that is not live stays a disabled "Yakında" badge. App Store has been live since 10-15
+(Türkiye storefront link, see the comment there); Google Play is still pending.
 
 ## Regenerating images
 

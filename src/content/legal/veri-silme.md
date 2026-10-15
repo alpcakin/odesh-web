@@ -10,7 +10,7 @@ Hesabınızı sildiğinizde kişisel verileriniz kalıcı olarak kaldırılır v
 
 ## Silme Yöntemleri
 
-1. **Uygulama İçinden (Önerilen)** — Profil → Ayarlar → Hesabı Sil. Kimlik doğrulaması gerektirir, işlem anında gerçekleşir.
+1. **Uygulama İçinden (Önerilen)** — Profil → Hesabı Sil. Kimlik doğrulaması gerektirir, işlem anında gerçekleşir.
 2. **E-posta ile Talep** — support@alpcakin.com adresine **Hesap Silme Talebi** konusuyla e-posta gönderin. Hesabınıza kayıtlı e-posta adresinden yazmanız gerekmektedir. Talebiniz en geç 30 gün içinde işleme alınır.
 
 ## Silinen Veriler

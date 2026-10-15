@@ -136,6 +136,14 @@ export interface Dictionary {
     deletion: string;
     legalNote: string;
   };
+  legalPage: {
+    crumb: string;
+    documents: string;
+    navLabel: string;
+    controller: string;
+    version: string;
+    effective: string;
+  };
   featuresPage: {
     crumb: string;
     others: string;
