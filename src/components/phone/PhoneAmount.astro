@@ -1,33 +1,37 @@
 ---
+import type { Locale } from '@/i18n';
+import { getDictionary } from '@/i18n';
 import PhoneScreen from './PhoneScreen.astro';
 import Icon from '../Icon.astro';
 
 interface Props {
   label: string;
+  locale: Locale;
 }
 
-const { label } = Astro.props;
+const { label, locale } = Astro.props;
+const a = getDictionary(locale).phone.amount;
 ---
 
 <PhoneScreen label={label}>
   <div class="body">
     <div>
-      <div class="eyebrow-sm">Yeni borç</div>
-      <div class="title">Ne kadar?</div>
+      <div class="eyebrow-sm">{a.eyebrow}</div>
+      <div class="title">{a.title}</div>
     </div>
 
     <div class="center">
       <div class="currency-pill">
-        <span class="flag">🇹🇷</span>
-        <span class="code">TRY</span>
+        <span class="flag">{a.flag}</span>
+        <span class="code">{a.code}</span>
         <Icon name="chevron-down" size={14} stroke="var(--color-text-muted)" />
       </div>
       <div class="amount-line">
-        <span class="sign">₺</span>
-        <span class="amount tabular">750</span>
+        <span class="sign">{a.sign}</span>
+        <span class="amount tabular">{a.value}</span>
       </div>
       <div class="note">
-        <span>Kira · Eylül</span>
+        <span>{a.note}</span>
       </div>
     </div>
 
@@ -35,15 +39,15 @@ const { label } = Astro.props;
       <div class="chips">
         <div class="chip">
           <Icon name="calendar" size={14} stroke="var(--color-text-muted)" />
-          <span>Bugün</span>
+          <span>{a.today}</span>
         </div>
         <div class="chip is-active">
           <Icon name="file" size={14} stroke="var(--color-primary)" />
-          <span>Fotoğraf eklendi</span>
+          <span>{a.photoAdded}</span>
           <Icon name="x" size={12} stroke="var(--color-text-muted)" />
         </div>
       </div>
-      <div class="continue">Devam</div>
+      <div class="continue">{a.next}</div>
     </div>
   </div>
 </PhoneScreen>

@@ -74,9 +74,9 @@ const others = FEATURE_IDS.filter((id) => id !== feature);
           <div class="phone">
           <PhoneFrame size="lg">
             <div class="screen-slot">
-              {screen === 'home' && <PhoneHome label={f.screenLabel} />}
-              {screen === 'friend' && <PhoneFriend label={f.screenLabel} />}
-              {screen === 'amount' && <PhoneAmount label={f.screenLabel} />}
+              {screen === 'home' && <PhoneHome label={f.screenLabel} locale={locale} />}
+              {screen === 'friend' && <PhoneFriend label={f.screenLabel} locale={locale} />}
+              {screen === 'amount' && <PhoneAmount label={f.screenLabel} locale={locale} />}
             </div>
           </PhoneFrame>
           <div class="screen-label">{f.screenLabel}</div>

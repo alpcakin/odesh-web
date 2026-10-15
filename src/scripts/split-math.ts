@@ -1,3 +1,5 @@
+import type { Locale } from '@/i18n/routes';
+
 const round = (n: number) => Math.round(n * 100) / 100;
 
 /**
@@ -19,5 +21,17 @@ export function computeShareSplit(amount: number, shares: number[], payerIndex: 
   return raw;
 }
 
-export const formatTRY = (n: number) =>
-  '₺' + n.toLocaleString('tr-TR', { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+/**
+ * Demo money per site language: lira on Turkish pages, euro on English pages at one tenth of the lira amounts (as in
+ * the app's English store screenshots).
+ */
+export const DEMO_MONEY: Record<Locale, { symbol: string; numberLocale: string; min: number; max: number; step: number; initial: number }> = {
+  tr: { symbol: '₺', numberLocale: 'tr-TR', min: 100, max: 5000, step: 50, initial: 1200 },
+  en: { symbol: '€', numberLocale: 'en-GB', min: 10, max: 500, step: 5, initial: 120 },
+};
+
+/** The amount without the currency sign, for layouts that show the sign separately. */
+export const formatAmount = (n: number, locale: Locale) =>
+  n.toLocaleString(DEMO_MONEY[locale].numberLocale, { minimumFractionDigits: 2, maximumFractionDigits: 2 });
+
+export const formatMoney = (n: number, locale: Locale) => DEMO_MONEY[locale].symbol + formatAmount(n, locale);

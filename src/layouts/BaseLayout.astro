@@ -16,7 +16,7 @@ interface Props {
   noindex?: boolean;
 }
 
-const { locale, title, description, path, alternates, ogImage = '/og.png', noindex = false } = Astro.props;
+const { locale, title, description, path, alternates, ogImage = locale === 'tr' ? '/og.png' : '/og-en.png', noindex = false } = Astro.props;
 
 const canonical = absoluteUrl(SITE.url, path);
 const ogImageUrl = absoluteUrl(SITE.url, ogImage);

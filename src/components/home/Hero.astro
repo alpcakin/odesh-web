@@ -37,20 +37,20 @@ const t = getDictionary(locale);
       <div class="stage-inner" data-hero-inner>
         <div class="phone-small">
           <PhoneFrame size="sm">
-            <div class="screen-slot"><PhoneFriend label={t.featuresPage.items.iban.screenLabel} /></div>
+            <div class="screen-slot"><PhoneFriend label={t.featuresPage.items.iban.screenLabel} locale={locale} /></div>
           </PhoneFrame>
         </div>
 
         <div class="phone-large" data-hero-carousel data-interval={SITE.heroCycleMs}>
           <PhoneFrame size="lg">
             <div class="slide is-active" data-slide>
-              <div class="screen-slot"><PhoneHome label={t.hero.screenLabels[0]} /></div>
+              <div class="screen-slot"><PhoneHome label={t.hero.screenLabels[0]} locale={locale} /></div>
             </div>
             <div class="slide is-next" data-slide>
-              <div class="screen-slot"><PhoneAmount label={t.hero.screenLabels[1]} /></div>
+              <div class="screen-slot"><PhoneAmount label={t.hero.screenLabels[1]} locale={locale} /></div>
             </div>
             <div class="slide is-next" data-slide>
-              <div class="screen-slot"><PhoneWelcome label={t.hero.screenLabels[2]} /></div>
+              <div class="screen-slot"><PhoneWelcome label={t.hero.screenLabels[2]} locale={locale} /></div>
             </div>
           </PhoneFrame>
           <div class="dots" role="tablist">

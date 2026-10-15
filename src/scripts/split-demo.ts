@@ -1,4 +1,5 @@
-import { computeShareSplit, formatTRY } from './split-math';
+import type { Locale } from '@/i18n/routes';
+import { computeShareSplit, formatAmount, formatMoney } from './split-math';
 
 const MAX_SHARES = 9;
 const PAYER_INDEX = 0;
@@ -13,6 +14,7 @@ export function initSplitDemo(): void {
   const hint = root.querySelector<HTMLElement>('[data-split-hint]');
   if (!amountInput || !amountDisplay || !hint || rows.length === 0) return;
 
+  const locale: Locale = root.dataset.locale === 'en' ? 'en' : 'tr';
   const shares = rows.map((row) => Number(row.dataset.shares) || 0);
 
   const render = () => {
@@ -20,7 +22,7 @@ export function initSplitDemo(): void {
     const total = shares.reduce((sum, s) => sum + s, 0);
     const split = computeShareSplit(amount, shares, PAYER_INDEX);
 
-    amountDisplay.textContent = formatTRY(amount).slice(1);
+    amountDisplay.textContent = formatAmount(amount, locale);
 
     rows.forEach((row, i) => {
       const share = shares[i] ?? 0;
@@ -30,12 +32,12 @@ export function initSplitDemo(): void {
       row.querySelector<HTMLButtonElement>('[data-split-inc]')!.disabled = share >= MAX_SHARES;
 
       const value = row.querySelector<HTMLElement>('[data-split-row-amount]')!;
-      value.textContent = (i === PAYER_INDEX || share === 0 ? '' : '−') + formatTRY(portion);
+      value.textContent = (i === PAYER_INDEX || share === 0 ? '' : '−') + formatMoney(portion, locale);
       value.classList.toggle('owes', i !== PAYER_INDEX && share > 0);
       row.classList.toggle('is-out', share === 0);
     });
 
-    const perShare = total > 0 ? formatTRY(amount / total) : formatTRY(0);
+    const perShare = formatMoney(total > 0 ? amount / total : 0, locale);
     hint.textContent = `${hint.dataset.totalShares?.replace('{n}', String(total))} · ${hint.dataset.perShare} ${perShare} · ${hint.dataset.hint}`;
   };
 

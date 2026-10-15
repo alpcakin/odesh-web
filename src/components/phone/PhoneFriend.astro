@@ -1,12 +1,16 @@
 ---
+import type { Locale } from '@/i18n';
+import { getDictionary } from '@/i18n';
 import PhoneScreen from './PhoneScreen.astro';
 import Icon from '../Icon.astro';
 
 interface Props {
   label: string;
+  locale: Locale;
 }
 
-const { label } = Astro.props;
+const { label, locale } = Astro.props;
+const f = getDictionary(locale).phone.friend;
 ---
 
 <PhoneScreen label={label}>
@@ -17,51 +21,51 @@ const { label } = Astro.props;
     </div>
 
     <div class="profile">
-      <div class="avatar">AÇ</div>
+      <div class="avatar">{f.initials}</div>
       <div class="profile-main">
         <div class="name-line">
-          <span class="name">Alp Çakın</span>
+          <span class="name">{f.name}</span>
           <span class="iban-btn"><Icon name="copy" size={10} strokeWidth={2.4} /><span>IBAN</span></span>
         </div>
-        <span class="handle">@alpcakin</span>
+        <span class="handle">{f.handle}</span>
       </div>
     </div>
 
     <div class="balance">
       <div class="balance-line">
-        <span class="currency-sign">₺</span>
-        <span class="balance-amount tabular">600,00</span>
+        <span class="currency-sign">{f.sign}</span>
+        <span class="balance-amount tabular">{f.balance}</span>
       </div>
-      <span class="balance-sub">Sen borçlusun</span>
+      <span class="balance-sub">{f.balanceSub}</span>
     </div>
 
-    <div class="settle">Borcu kapat</div>
+    <div class="settle">{f.settle}</div>
 
     <div class="section-head">
       <i></i>
-      <span>ARAMIZDA</span>
+      <span>{f.section}</span>
     </div>
 
-    <div class="entry">
-      <div class="entry-icon negative"><Icon name="file" size={16} stroke="var(--color-negative)" /></div>
-      <div class="entry-main">
-        <div class="entry-title">Kira · Eylül</div>
-        <div class="entry-date"><Icon name="calendar" size={10} /><span>1 Eyl 2026</span></div>
-      </div>
-      <div class="entry-amount negative tabular">−₺750,00</div>
-    </div>
-    <div class="divider"></div>
-    <div class="entry">
-      <div class="entry-icon positive"><Icon name="file" size={16} stroke="var(--color-positive)" /></div>
-      <div class="entry-main">
-        <div class="entry-title">Market</div>
-        <div class="entry-date"><Icon name="calendar" size={10} /><span>28 Ağu 2026</span></div>
-      </div>
-      <div class="entry-amount positive tabular">+₺150,00</div>
-    </div>
+    {
+      f.entries.map((e, i) => (
+        <Fragment>
+          {i > 0 && <div class="divider" />}
+          <div class="entry">
+            <div class:list={['entry-icon', e.negative ? 'negative' : 'positive']}>
+              <Icon name="file" size={16} stroke={e.negative ? 'var(--color-negative)' : 'var(--color-positive)'} />
+            </div>
+            <div class="entry-main">
+              <div class="entry-title">{e.desc}</div>
+              <div class="entry-date"><Icon name="calendar" size={10} /><span>{e.date}</span></div>
+            </div>
+            <div class:list={['entry-amount tabular', e.negative ? 'negative' : 'positive']}>{e.amount}</div>
+          </div>
+        </Fragment>
+      ))
+    }
   </div>
 
-  <div class="toast">Kopyalandı</div>
+  <div class="toast">{f.toast}</div>
 </PhoneScreen>
 
 <style>

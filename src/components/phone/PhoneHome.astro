@@ -1,20 +1,24 @@
 ---
+import type { Locale } from '@/i18n';
+import { getDictionary } from '@/i18n';
 import PhoneScreen from './PhoneScreen.astro';
 import Icon from '../Icon.astro';
 
 interface Props {
   label: string;
+  locale: Locale;
 }
 
-const { label } = Astro.props;
+const { label, locale } = Astro.props;
+const p = getDictionary(locale).phone;
 ---
 
 <PhoneScreen label={label}>
   <div class="body">
     <div class="header">
       <div>
-        <div class="greeting">Merhaba,</div>
-        <div class="name">Deniz</div>
+        <div class="greeting">{p.home.greeting}</div>
+        <div class="name">{p.home.name}</div>
       </div>
       <div class="friends-btn">
         <Icon name="users" size={19} stroke="#fff" />
@@ -24,85 +28,60 @@ const { label } = Astro.props;
 
     <div class="net-pill">
       <i></i>
-      <span>Net alacaklısın · +₺1.030,00</span>
+      <span>{p.home.net}</span>
     </div>
 
     <div class="cards">
       <div class="card positive">
-        <div class="card-label">Sana borçlu</div>
-        <div class="card-amount tabular">₺1.850,00</div>
-        <div class="card-sub">3 kişi</div>
+        <div class="card-label">{p.home.owedToYou}</div>
+        <div class="card-amount tabular">{p.home.owedToYouAmount}</div>
+        <div class="card-sub">{p.home.owedToYouSub}</div>
       </div>
       <div class="card negative">
-        <div class="card-label">Borçlusun</div>
-        <div class="card-amount tabular">₺820,00</div>
-        <div class="card-sub">2 kişi</div>
+        <div class="card-label">{p.home.youOwe}</div>
+        <div class="card-amount tabular">{p.home.youOweAmount}</div>
+        <div class="card-sub">{p.home.youOweSub}</div>
       </div>
     </div>
 
     <div class="chips">
-      <span class="chip positive tabular">+₺1.030,00</span>
-      <span class="chip negative tabular">−€45,00</span>
+      {p.home.chips.map((c) => <span class:list={['chip tabular', c.negative ? 'negative' : 'positive']}>{c.amount}</span>)}
     </div>
 
-    <div class="section-label">Borçlar</div>
+    <div class="section-label">{p.home.section}</div>
 
     <div class="rows">
-      <div class="row">
-        <div class="avatar">AÇ</div>
-        <div class="row-main">
-          <div class="row-title">Alp</div>
-          <div class="row-sub">Kira · Eylül</div>
-        </div>
-        <div class="copy-btn"><Icon name="copy" size={15} stroke="var(--color-negative)" /></div>
-        <div class="row-amount negative tabular">−₺600,00</div>
-      </div>
-      <div class="divider"></div>
-
-      <div class="row">
-        <div class="avatar group"><Icon name="users" size={18} stroke="var(--color-primary)" /></div>
-        <div class="row-main">
-          <div class="row-title">Kapadokya Gezisi</div>
-          <div class="tag"><Icon name="users" size={9} strokeWidth={2.4} /><span>Grup</span></div>
-        </div>
-        <div class="row-amount positive tabular">+₺1.240,00</div>
-      </div>
-      <div class="divider"></div>
-
-      <div class="row">
-        <div class="avatar">MD</div>
-        <div class="row-main">
-          <div class="row-title-line"><span class="row-title">Mert</span><span class="currency">EUR</span></div>
-          <div class="row-sub">Budapeşte bileti</div>
-        </div>
-        <div class="copy-btn"><Icon name="copy" size={15} stroke="var(--color-negative)" /></div>
-        <div class="row-amount negative tabular">−€45,00</div>
-      </div>
-      <div class="divider"></div>
-
-      <div class="row">
-        <div class="avatar">SB</div>
-        <div class="row-main">
-          <div class="row-title">Selin</div>
-          <div class="row-sub">Akşam yemeği</div>
-        </div>
-        <div class="row-amount positive tabular">+₺610,00</div>
-      </div>
-      <div class="divider"></div>
-
-      <div class="row">
-        <div class="avatar">BA</div>
-        <div class="row-main">
-          <div class="row-title">Bakkal Ahmet</div>
-          <div class="tag"><Icon name="book" size={9} strokeWidth={2.4} /><span>Sanal kişi</span></div>
-        </div>
-        <div class="row-amount negative tabular">−₺220,00</div>
-      </div>
+      {
+        p.home.rows.map((r, i) => (
+          <Fragment>
+            {i > 0 && <div class="divider" />}
+            <div class="row">
+              {r.badge === 'group' ? (
+                <div class="avatar group"><Icon name="users" size={18} stroke="var(--color-primary)" /></div>
+              ) : (
+                <div class="avatar">{r.initials}</div>
+              )}
+              <div class="row-main">
+                {r.currency ? (
+                  <div class="row-title-line"><span class="row-title">{r.title}</span><span class="currency">{r.currency}</span></div>
+                ) : (
+                  <div class="row-title">{r.title}</div>
+                )}
+                {r.badge === 'group' && <div class="tag"><Icon name="users" size={9} strokeWidth={2.4} /><span>{p.home.groupBadge}</span></div>}
+                {r.badge === 'ledger' && <div class="tag"><Icon name="book" size={9} strokeWidth={2.4} /><span>{p.home.ledgerBadge}</span></div>}
+                {r.sub && <div class="row-sub">{r.sub}</div>}
+              </div>
+              {r.copy && <div class="copy-btn"><Icon name="copy" size={15} stroke="var(--color-negative)" /></div>}
+              <div class:list={['row-amount tabular', r.negative ? 'negative' : 'positive']}>{r.amount}</div>
+            </div>
+          </Fragment>
+        ))
+      }
     </div>
   </div>
 
   <div class="fab">
-    <span>Harcama Ekle</span>
+    <span>{p.home.fab}</span>
     <i></i>
     <Icon name="plus" size={26} stroke="#fff" />
   </div>
@@ -113,19 +92,19 @@ const { label } = Astro.props;
       <div class="tab is-active">
         <i class="tab-indicator"></i>
         <Icon name="home" size={22} />
-        <span>Ana Sayfa</span>
+        <span>{p.tabs[0]}</span>
       </div>
       <div class="tab">
         <Icon name="users" size={22} class="tab-icon-sm" />
-        <span>Gruplar</span>
+        <span>{p.tabs[1]}</span>
       </div>
       <div class="tab">
         <Icon name="activity" size={22} class="tab-icon-sm" />
-        <span>Hareketler</span>
+        <span>{p.tabs[2]}</span>
       </div>
       <div class="tab">
         <Icon name="user" size={22} class="tab-icon-sm" />
-        <span>Profil</span>
+        <span>{p.tabs[3]}</span>
       </div>
     </div>
   </div>

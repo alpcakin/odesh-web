@@ -23,6 +23,29 @@ export interface LedgerRow {
   negative: boolean;
 }
 
+/** A balance row on the phone mockup's home screen. */
+export interface PhoneHomeRow {
+  initials: string;
+  title: string;
+  /** Second line; rows with a badge have none. */
+  sub?: string;
+  badge?: 'group' | 'ledger';
+  /** Currency code next to the name, for rows not in the main currency. */
+  currency?: string;
+  amount: string;
+  negative: boolean;
+  /** Copy-IBAN button: rows where you owe a friend. */
+  copy?: boolean;
+}
+
+export interface FxRow {
+  flag: string;
+  code: string;
+  name: string;
+  amount: string;
+  positive: boolean;
+}
+
 export interface FeaturePoint {
   title: string;
   body: string;
@@ -85,7 +108,20 @@ export interface Dictionary {
     eyebrow: string;
     title: string;
     sub: string;
-    iban: { title: string; body: string; hint: string; btn: string; btnDone: string; toast: string; demoName: string; demoHandle: string };
+    iban: {
+      title: string;
+      body: string;
+      hint: string;
+      btn: string;
+      btnDone: string;
+      toast: string;
+      demoName: string;
+      demoHandle: string;
+      demoInitials: string;
+      demoAmount: string;
+      /** Copied by the demo button; must not belong to a real account. */
+      demoIban: string;
+    };
     remind: { title: string; body: string; msg: string; time: string; tags: [string, string, string] };
     split: {
       title: string;
@@ -101,7 +137,7 @@ export interface Dictionary {
       increaseLabel: string;
       people: [string, string, string];
     };
-    fx: { title: string; body: string; rows: { code: string; name: string }[] };
+    fx: { title: string; body: string; rows: FxRow[] };
   };
   how: { eyebrow: string; title: string; steps: HomeStep[] };
   ledger: {
@@ -113,6 +149,8 @@ export interface Dictionary {
     youOwe: string;
     settle: string;
     contactName: string;
+    contactInitials: string;
+    balance: string;
     rows: LedgerRow[];
   };
   security: {
@@ -143,6 +181,61 @@ export interface Dictionary {
     controller: string;
     version: string;
     effective: string;
+  };
+  /** Phone mockups: the app's own wording in this language, demo people and amounts. */
+  phone: {
+    tabs: [string, string, string, string];
+    home: {
+      greeting: string;
+      name: string;
+      net: string;
+      owedToYou: string;
+      owedToYouAmount: string;
+      owedToYouSub: string;
+      youOwe: string;
+      youOweAmount: string;
+      youOweSub: string;
+      chips: { amount: string; negative: boolean }[];
+      section: string;
+      groupBadge: string;
+      ledgerBadge: string;
+      rows: PhoneHomeRow[];
+      fab: string;
+    };
+    friend: {
+      initials: string;
+      name: string;
+      handle: string;
+      sign: string;
+      balance: string;
+      balanceSub: string;
+      settle: string;
+      section: string;
+      entries: LedgerRow[];
+      toast: string;
+    };
+    amount: {
+      eyebrow: string;
+      title: string;
+      flag: string;
+      code: string;
+      sign: string;
+      value: string;
+      note: string;
+      today: string;
+      photoAdded: string;
+      next: string;
+    };
+    welcome: {
+      headline: string;
+      sub: string;
+      createAccount: string;
+      or: string;
+      apple: string;
+      google: string;
+      haveAccount: string;
+      login: string;
+    };
   };
   featuresPage: {
     crumb: string;

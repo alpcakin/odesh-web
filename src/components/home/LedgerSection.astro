@@ -31,13 +31,13 @@ const t = getDictionary(locale);
 
     <div class="card" data-reveal style="--reveal-delay: 100ms">
       <div class="card-head">
-        <div class="avatar">BA</div>
+        <div class="avatar">{t.ledger.contactInitials}</div>
         <div class="card-main">
           <div class="contact">{t.ledger.contactName}</div>
           <div class="badge"><Icon name="book" size={9} strokeWidth={2.4} /><span>{t.ledger.badge}</span></div>
         </div>
         <div class="balance">
-          <div class="balance-amount tabular">₺220,00</div>
+          <div class="balance-amount tabular">{t.ledger.balance}</div>
           <div class="balance-sub">{t.ledger.youOwe}</div>
         </div>
       </div>

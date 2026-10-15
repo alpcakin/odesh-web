@@ -1,5 +1,5 @@
 /**
- * Generates the favicon set and the Open Graph image into public/.
+ * Generates the favicon set and the Open Graph images (og.png Turkish, og-en.png English) into public/.
  * Run with `pnpm images:generate` whenever the brand assets change.
  */
 import { mkdir, readFile, writeFile } from 'node:fs/promises';
@@ -23,7 +23,27 @@ const markSvg = (size) => `
   <circle cx="63.5" cy="33" r="27" stroke="${PRIMARY}" stroke-width="11"/>
 </svg>`;
 
-const ogSvg = () => `
+/** Open Graph text per site language. `highlight` is the width of the accent bar under line two, fitted by eye. */
+const OG = {
+  tr: {
+    file: 'og.png',
+    line1: 'Kim kime ne borçlu,',
+    line2: 'bir bakışta.',
+    highlight: 426,
+    sub: "Harcamayı gir, böl, IBAN'ı tek dokunuşla kopyala.",
+    status: "APP STORE'DA · ANDROID YAKINDA · odesh.app",
+  },
+  en: {
+    file: 'og-en.png',
+    line1: 'Who owes whom,',
+    line2: 'at a glance.',
+    highlight: 438,
+    sub: 'Log the expense, split it, copy the IBAN in one tap.',
+    status: 'ON THE APP STORE · ANDROID SOON · odesh.app',
+  },
+};
+
+const ogSvg = (o) => `
 <svg xmlns="http://www.w3.org/2000/svg" width="1200" height="630" viewBox="0 0 1200 630">
   <defs>
     <radialGradient id="glow" cx="0.85" cy="0.1" r="0.6">
@@ -40,11 +60,11 @@ const ogSvg = () => `
     </g>
     <text x="150" y="66" font-family="Inter, Arial, Helvetica, sans-serif" font-size="56" font-weight="700" fill="${INK}" letter-spacing="-1.5">odesh</text>
   </g>
-  <text x="96" y="330" font-family="Inter, Arial, Helvetica, sans-serif" font-size="88" font-weight="800" fill="${INK}" letter-spacing="-3.5">Kim kime ne borçlu,</text>
-  <rect x="96" y="386" width="426" height="22" rx="6" fill="${ACCENT}" opacity="0.85"/>
-  <text x="96" y="404" font-family="Inter, Arial, Helvetica, sans-serif" font-size="88" font-weight="800" fill="${PRIMARY}" letter-spacing="-3.5">bir bakışta.</text>
-  <text x="96" y="480" font-family="Inter, Arial, Helvetica, sans-serif" font-size="30" fill="${MUTED}">Harcamayı gir, böl, IBAN'ı tek dokunuşla kopyala.</text>
-  <text x="96" y="548" font-family="Inter, Arial, Helvetica, sans-serif" font-size="22" font-weight="600" fill="${PRIMARY}" letter-spacing="2">YAKINDA · iOS VE ANDROID · odesh.app</text>
+  <text x="96" y="330" font-family="Inter, Arial, Helvetica, sans-serif" font-size="88" font-weight="800" fill="${INK}" letter-spacing="-3.5">${o.line1}</text>
+  <rect x="96" y="386" width="${o.highlight}" height="22" rx="6" fill="${ACCENT}" opacity="0.85"/>
+  <text x="96" y="404" font-family="Inter, Arial, Helvetica, sans-serif" font-size="88" font-weight="800" fill="${PRIMARY}" letter-spacing="-3.5">${o.line2}</text>
+  <text x="96" y="480" font-family="Inter, Arial, Helvetica, sans-serif" font-size="30" fill="${MUTED}">${o.sub}</text>
+  <text x="96" y="548" font-family="Inter, Arial, Helvetica, sans-serif" font-size="22" font-weight="600" fill="${PRIMARY}" letter-spacing="2">${o.status}</text>
 </svg>`;
 
 async function main() {
@@ -63,9 +83,11 @@ async function main() {
   }
 
   await writeFile(path.join(publicDir, 'icon.svg'), markSvg(96).trim() + '\n');
-  await sharp(Buffer.from(ogSvg())).png().toFile(path.join(publicDir, 'og.png'));
+  for (const o of Object.values(OG)) {
+    await sharp(Buffer.from(ogSvg(o))).png().toFile(path.join(publicDir, o.file));
+  }
 
-  console.log('Generated favicons and og.png in public/');
+  console.log('Generated favicons and Open Graph images in public/');
 }
 
 main().catch((err) => {

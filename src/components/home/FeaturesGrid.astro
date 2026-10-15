@@ -3,7 +3,7 @@ import type { Locale } from '@/i18n';
 import { HOME_ANCHORS, getDictionary } from '@/i18n';
 import Icon from '../Icon.astro';
 import BrandMark from '../BrandMark.astro';
-import { computeShareSplit, formatTRY } from '@/scripts/split-math';
+import { DEMO_MONEY, computeShareSplit, formatAmount, formatMoney } from '@/scripts/split-math';
 
 interface Props {
   locale: Locale;
@@ -12,9 +12,8 @@ interface Props {
 const { locale } = Astro.props;
 const t = getDictionary(locale);
 
-// Bank code 00000 belongs to no institution; the digits are a visible demo sequence.
-const DEMO_IBAN = 'TR40 0000 0012 3456 7890 1234 56';
-const DEFAULT_AMOUNT = 1200;
+const money = DEMO_MONEY[locale];
+const DEFAULT_AMOUNT = money.initial;
 const DEFAULT_SHARES = [1, 1, 1];
 const PAYER_INDEX = 0;
 const initialSplit = computeShareSplit(DEFAULT_AMOUNT, DEFAULT_SHARES, PAYER_INDEX);
@@ -25,14 +24,9 @@ const splitRows = t.features.split.people.map((name, i) => ({
   initials: name.slice(0, 2).toLocaleUpperCase(locale === 'tr' ? 'tr-TR' : 'en'),
   self: i === PAYER_INDEX,
   shares: DEFAULT_SHARES[i] ?? 0,
-  amount: (i === PAYER_INDEX ? '' : '−') + formatTRY(initialSplit[i] ?? 0),
+  amount: (i === PAYER_INDEX ? '' : '−') + formatMoney(initialSplit[i] ?? 0, locale),
 }));
 
-const fxRows = [
-  { flag: '🇹🇷', ...t.features.fx.rows[0], amount: '+₺1.030,00', positive: true },
-  { flag: '🇪🇺', ...t.features.fx.rows[1], amount: '−€45,00', positive: false },
-  { flag: '🇭🇺', ...t.features.fx.rows[2], amount: '+Ft12.500', positive: true },
-];
 const currencies = ['TRY', 'EUR', 'USD', 'GBP', 'HUF'];
 ---
 
@@ -52,15 +46,15 @@ const currencies = ['TRY', 'EUR', 'USD', 'GBP', 'HUF'];
       </div>
       <div class="demo">
         <div class="demo-person">
-          <div class="avatar">AÇ</div>
+          <div class="avatar">{t.features.iban.demoInitials}</div>
           <div class="demo-main">
             <div class="demo-name">{t.features.iban.demoName}</div>
             <div class="demo-handle">{t.features.iban.demoHandle}</div>
           </div>
-          <div class="demo-amount tabular">−₺600,00</div>
+          <div class="demo-amount tabular">{t.features.iban.demoAmount}</div>
         </div>
         <div class="demo-row">
-          <code class="iban" data-iban-value={DEMO_IBAN}>{DEMO_IBAN}</code>
+          <code class="iban" data-iban-value={t.features.iban.demoIban}>{t.features.iban.demoIban}</code>
           <button type="button" class="iban-btn" data-iban-btn data-label={t.features.iban.btn} data-label-done={t.features.iban.btnDone}>
             <Icon name="copy" size={14} strokeWidth={2.4} />
             <span data-iban-label>{t.features.iban.btn}</span>
@@ -90,7 +84,7 @@ const currencies = ['TRY', 'EUR', 'USD', 'GBP', 'HUF'];
       </div>
     </article>
 
-    <article class="card split-card" data-reveal style="--reveal-delay: 50ms" data-split-demo>
+    <article class="card split-card" data-reveal style="--reveal-delay: 50ms" data-split-demo data-locale={locale}>
       <div class="card-head">
         <div class="icon-box accent"><Icon name="users" size={20} stroke="var(--color-accent-strong)" /></div>
         <h3 class="card-title">{t.features.split.title}</h3>
@@ -98,10 +92,10 @@ const currencies = ['TRY', 'EUR', 'USD', 'GBP', 'HUF'];
       </div>
       <div class="demo split-demo">
         <div class="amount-line">
-          <span class="amount-sign">₺</span>
-          <span class="amount-value tabular" data-split-amount-display>{formatTRY(DEFAULT_AMOUNT).slice(1)}</span>
+          <span class="amount-sign">{money.symbol}</span>
+          <span class="amount-value tabular" data-split-amount-display>{formatAmount(DEFAULT_AMOUNT, locale)}</span>
         </div>
-        <input type="range" min="100" max="5000" step="50" value={DEFAULT_AMOUNT} aria-label={t.features.split.amountLabel} class="range" data-split-amount />
+        <input type="range" min={money.min} max={money.max} step={money.step} value={DEFAULT_AMOUNT} aria-label={t.features.split.amountLabel} class="range" data-split-amount />
         <div class="rows">
           {
             splitRows.map((r) => (
@@ -132,7 +126,7 @@ const currencies = ['TRY', 'EUR', 'USD', 'GBP', 'HUF'];
           data-per-share={t.features.split.perShare}
           data-hint={t.features.split.hint}
         >
-          {t.features.split.totalShares.replace('{n}', String(initialTotal))} · {t.features.split.perShare} {formatTRY(DEFAULT_AMOUNT / initialTotal)} · {t.features.split.hint}
+          {t.features.split.totalShares.replace('{n}', String(initialTotal))} · {t.features.split.perShare} {formatMoney(DEFAULT_AMOUNT / initialTotal, locale)} · {t.features.split.hint}
         </div>
       </div>
     </article>
@@ -145,7 +139,7 @@ const currencies = ['TRY', 'EUR', 'USD', 'GBP', 'HUF'];
       </div>
       <div class="fx-list">
         {
-          fxRows.map((r) => (
+          t.features.fx.rows.map((r) => (
             <div class="fx-row">
               <div class="fx-left">
                 <span class="fx-flag">{r.flag}</span>

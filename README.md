@@ -82,4 +82,5 @@ link labelled "İndir"; a store that is not live stays a disabled "Yakında" bad
 pnpm images:generate
 ```
 
-Reads `src/assets/app-icon.png` and writes the favicon set and `public/og.png`.
+Reads `src/assets/app-icon.png` and writes the favicon set and the Open Graph images (`public/og.png` Turkish,
+`public/og-en.png` English; texts in the script).
