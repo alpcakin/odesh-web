@@ -22,7 +22,7 @@ export const en: Dictionary = {
   nav: {
     features: 'Features',
     how: 'How it works',
-    ledger: 'Ledger',
+    ledger: 'Offline contacts',
     security: 'Security',
     faq: 'FAQ',
     cta: 'Get the app',
@@ -93,15 +93,15 @@ export const en: Dictionary = {
     ],
   },
   ledger: {
-    eyebrow: 'Ledger',
+    eyebrow: 'Offline contacts',
     title: 'Works even if they never install the app.',
-    body: 'Your landlord, the corner shop, the friend who refuses to install anything. Add them to the Ledger as a virtual contact; you keep the tab, and they never even know.',
+    body: 'Your landlord, the corner shop, the friend who refuses to install anything. Add them as an offline contact; you keep the tab, and they never even know.',
     points: [
       'Only you can see it. No notification, invite or email goes out.',
       'Partial payments and receipt photos are supported.',
       'If you are the one who owes and it has been open three days, odesh reminds you.',
     ],
-    badge: 'Virtual contact',
+    badge: 'Offline contact',
     youOwe: 'You owe',
     settle: 'Settle',
     contactName: 'Bakkal Ahmet',
@@ -141,11 +141,11 @@ export const en: Dictionary = {
       },
       {
         q: 'How is it different from Splitwise and the like?',
-        a: 'odesh is built around how people in Turkey actually pay each other: by IBAN transfer. So the IBAN sits right next to the debt. The app does the reminding, not you. The Ledger covers people who do not use the app. No ads, no premium wall, no data sales.',
+        a: 'odesh is built around how people in Türkiye and much of Europe actually pay each other: by IBAN transfer. So the IBAN sits right next to the debt. The app does the reminding, not you. Offline contacts cover people who do not use the app. No ads, no premium wall, no data sales.',
       },
       {
         q: 'What if my friend doesn’t use the app?',
-        a: 'Add them to the Ledger as a virtual contact and track the balance one-sided; nothing is ever sent to them. Groups can have virtual members too, in which case every member of the group sees the record.',
+        a: 'Add them as an offline contact and track the balance one-sided; nothing is ever sent to them. Groups can have offline members too, in which case every member of the group sees the record.',
       },
       {
         q: 'How do reminders work?',
@@ -174,7 +174,7 @@ export const en: Dictionary = {
     sub: 'Free, no ads, no data sales. New countries and the Android version will appear here as they launch.',
   },
   footer: {
-    tag: 'A debt-tracking app designed for Turkey. Who owes whom, at a glance.',
+    tag: 'A debt-tracking app built around IBAN transfers. Who owes whom, at a glance.',
     product: 'Product',
     legal: 'Legal',
     contact: 'Contact',
@@ -194,7 +194,7 @@ export const en: Dictionary = {
   featuresPage: {
     crumb: 'features',
     others: 'Other features',
-    labels: { iban: 'IBAN copy', bolusme: 'Splitting', defter: 'Ledger', doviz: 'Multi-currency' },
+    labels: { iban: 'IBAN copy', bolusme: 'Splitting', defter: 'Offline contacts', doviz: 'Multi-currency' },
     items: {
       iban: {
         eyebrow: 'IBAN copy',
@@ -223,24 +223,24 @@ export const en: Dictionary = {
           { title: 'One net ledger per group', body: 'Everyone in a group has a single net balance. Chains of debt collapse into the fewest possible transfers.' },
         ],
         cards: [
-          { big: '20', title: 'People per group', body: 'Flatmates, holiday crews, office lunches. Up to 20 people including virtual members.' },
+          { big: '20', title: 'People per group', body: 'Flatmates, holiday crews, office lunches. Up to 20 people including offline members.' },
           { big: 'Net', title: 'One balance', body: 'When A owes B and B owes C, nobody makes three transfers. Inside a group, each person sees a single net amount.' },
           { big: 'Receipt', title: 'Snap it', body: 'Photograph the receipt and attach it. Only the parties to the record can see it; it is compressed and stored in a private area.' },
         ],
       },
       defter: {
-        eyebrow: 'Ledger',
+        eyebrow: 'Offline contacts',
         title: 'For people without the app, too.',
-        lead: 'Your landlord, the corner shop, the friend who refuses to install anything. Add them as a virtual contact and track the balance one-sided. Nothing is ever sent to them.',
-        screenLabel: 'Home · Virtual contact row',
+        lead: 'Your landlord, the corner shop, the friend who refuses to install anything. Add them as an offline contact and track the balance one-sided. Nothing is ever sent to them.',
+        screenLabel: 'Home · Offline contact row',
         points: [
-          { title: 'Visible only to you', body: 'Ledger records are your private space. No notification, invite or email goes to the contact.' },
+          { title: 'Visible only to you', body: 'Offline contact records are your private space. No notification, invite or email goes to the contact.' },
           { title: 'Partial payments and receipts', body: 'Log payments piece by piece, attach receipts. The debt closes on its own once the balance hits zero.' },
           { title: 'Reminds you', body: 'If you are the one who owes and it has been open three days, odesh gently nudges you. You can turn it off.' },
         ],
         cards: [
-          { big: 'Name + IBAN', title: 'That is all the data', body: 'A virtual contact is just a name and an optional IBAN. Nothing else is asked for.' },
-          { big: 'Group', title: 'Virtual members', body: 'Add app-less members to groups too; they enter exactly the same balance math as real members.' },
+          { big: 'Name + IBAN', title: 'That is all the data', body: 'An offline contact is just a name and an optional IBAN. Nothing else is asked for.' },
+          { big: 'Group', title: 'Offline members', body: 'Add app-less members to groups too; they enter exactly the same balance math as real members.' },
           { big: 'Archive', title: 'Archive, not delete', body: 'Removing a contact does not break your history; it stays in the archive as your own private record.' },
         ],
       },
