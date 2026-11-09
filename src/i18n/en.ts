@@ -5,7 +5,7 @@ export const en: Dictionary = {
     siteTitle: 'odesh',
     homeTitle: 'odesh - Who owes whom, at a glance',
     homeDescription:
-      'Split expenses with friends, see every open balance in one list, copy an IBAN in a single tap. odesh does the reminding, so you keep the friendship. Free, no ads. On the App Store in Türkiye; more countries and Android coming soon.',
+      'Split expenses with friends, see every open balance in one list, copy an IBAN in a single tap. odesh does the reminding, so you keep the friendship. Free, no ads. On the App Store and Google Play in Türkiye; more countries coming soon.',
     featuresTitleSuffix: 'odesh features',
     notFoundTitle: 'Page not found',
     notFoundBody: 'The page you are looking for may have moved or never existed.',
@@ -30,7 +30,7 @@ export const en: Dictionary = {
     menuLabel: 'Menu',
   },
   hero: {
-    eyebrow: 'On the App Store in Türkiye · Android soon',
+    eyebrow: 'On the App Store and Google Play in Türkiye',
     title1: 'Who owes whom,',
     title2: 'at a glance.',
     sub: 'Log the expense, split it with friends, copy their IBAN in one tap. odesh does the reminding, so you keep the friendship.',
@@ -176,8 +176,8 @@ export const en: Dictionary = {
     ],
   },
   cta: {
-    title: 'On the App Store in Türkiye. More countries and Google Play soon.',
-    sub: 'Free, no ads, no data sales. New countries and the Android version will appear here as they launch.',
+    title: 'On the App Store and Google Play in Türkiye. More countries soon.',
+    sub: 'Free, no ads, no data sales. New countries will appear here as they launch.',
   },
   footer: {
     tag: 'A debt-tracking app built around IBAN transfers. Who owes whom, at a glance.',

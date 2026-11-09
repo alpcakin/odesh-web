@@ -74,7 +74,7 @@ are moot on Netlify, but if this ever moves again, check for both.
 
 Per store in `src/config/site.ts`: set `appStoreLive` / `playStoreLive` to `true` with the real URL. That badge becomes a
 link labelled "İndir"; a store that is not live stays a disabled "Yakında" badge. App Store has been live since 10-15
-(Türkiye storefront link, see the comment there); Google Play is still pending.
+(Türkiye storefront link, see the comment there); Google Play is live too.
 
 ## Regenerating images
 

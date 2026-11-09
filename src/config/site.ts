@@ -7,11 +7,11 @@ export const SITE = {
   copyrightYear: 2026,
   /** Per store: true once the listing is public. Live badges link out ("İndir"), others stay "Yakında". */
   appStoreLive: true,
-  playStoreLive: false,
+  playStoreLive: true,
   // Türkiye storefront on purpose: the id-only link resolves to the US storefront on desktop and 404s while the app
   // is not sold there. On iPhone the App Store opens the user's own storefront either way.
   appStoreUrl: 'https://apps.apple.com/tr/app/odesh/id6802964428',
-  playStoreUrl: 'https://play.google.com/',
+  playStoreUrl: 'https://play.google.com/store/apps/details?id=com.odesh.mobile',
   /** Milliseconds between automatic hero phone screen changes. */
   heroCycleMs: 4200,
 } as const;

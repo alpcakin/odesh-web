@@ -31,7 +31,7 @@ const OG = {
     line2: 'bir bakışta.',
     highlight: 426,
     sub: "Harcamayı gir, böl, IBAN'ı tek dokunuşla kopyala.",
-    status: "APP STORE'DA · ANDROID YAKINDA · odesh.app",
+    status: "APP STORE VE GOOGLE PLAY'DE · odesh.app",
   },
   en: {
     file: 'og-en.png',
@@ -39,7 +39,7 @@ const OG = {
     line2: 'at a glance.',
     highlight: 438,
     sub: 'Log the expense, split it, copy the IBAN in one tap.',
-    status: 'ON THE APP STORE · ANDROID SOON · odesh.app',
+    status: 'ON THE APP STORE AND GOOGLE PLAY · odesh.app',
   },
 };
 
