@@ -78,7 +78,7 @@ export const tr: Dictionary = {
     },
     fx: {
       title: 'Çok döviz, karışıklık yok',
-      body: 'TRY, EUR, USD, GBP ve HUF. Her kayıt kendi para biriminde tutulur. Euro borcun kur tahminiyle liraya çevrilip toplanmaz; olduğu gibi, ayrı bir satırda görünür.',
+      body: '39 para birimi: TRY, EUR, USD, GBP, HUF ve daha fazlası. Her kayıt kendi para biriminde tutulur. Euro borcun kur tahminiyle liraya çevrilip toplanmaz; olduğu gibi, ayrı bir satırda görünür.',
       rows: [
         { flag: '🇹🇷', code: 'TRY', name: 'Türk Lirası', amount: '+₺1.030,00', positive: true },
         { flag: '🇪🇺', code: 'EUR', name: 'Euro', amount: '−€45,00', positive: false },
@@ -163,7 +163,7 @@ export const tr: Dictionary = {
       },
       {
         q: 'Hangi para birimleri destekleniyor?',
-        a: 'TRY, EUR, USD, GBP ve HUF. Her kayıt kendi para biriminde tutulur, farklı dövizler asla toplanmaz. Para birimi başına ayrı IBAN ekleyebilirsin; kopyalanan IBAN borcun dövizine göre seçilir.',
+        a: '39 para birimi: TRY, EUR, USD, GBP, HUF ve daha fazlası. Her kayıt kendi para biriminde tutulur, farklı dövizler asla toplanmaz. Para birimi başına ayrı IBAN ekleyebilirsin; kopyalanan IBAN borcun dövizine göre seçilir.',
       },
       {
         q: 'Verilerim nerede saklanıyor?',
@@ -187,7 +187,7 @@ export const tr: Dictionary = {
     terms: 'Kullanım Koşulları',
     privacy: 'Aydınlatma Metni',
     deletion: 'Hesap ve Veri Silme',
-    legalNote: 'Türkçe metin esas alınır; çeviriler kolaylık amaçlıdır.',
+    legalNote: 'Metinler Türkçe ve İngilizce olarak aynı içerikte sunulur; onayladığınız dildeki metin esas alınır.',
   },
   legalPage: {
     crumb: 'yasal',
@@ -318,8 +318,8 @@ export const tr: Dictionary = {
       },
       doviz: {
         eyebrow: 'Çok döviz',
-        title: 'Beş para birimi, sıfır karışıklık.',
-        lead: 'TRY, EUR, USD, GBP ve HUF. Her kayıt kendi para biriminde tutulur; farklı dövizler asla toplanmaz, hiçbiri gizlenmez.',
+        title: '39 para birimi, sıfır karışıklık.',
+        lead: '39 para birimi: TRY, EUR, USD, GBP, HUF ve daha fazlası. Her kayıt kendi para biriminde tutulur; farklı dövizler asla toplanmaz, hiçbiri gizlenmez.',
         screenLabel: 'Ana sayfa · Döviz çipleri',
         points: [
           { title: 'Asla toplanmaz', body: 'Kur tahmini yok, yanıltıcı toplam yok. EUR borcu EUR olarak, TRY alacağı TRY olarak görünür.' },
@@ -327,7 +327,7 @@ export const tr: Dictionary = {
           { title: 'Ana para birimi', body: 'Büyük bakiye kartları seçtiğin ana para biriminde. Çiplere dokunarak diğerlerine geçersin.' },
         ],
         cards: [
-          { big: '5', title: 'Para birimi', body: 'TRY · EUR · USD · GBP · HUF. Her harcamada tek listeden seçilir.' },
+          { big: '39', title: 'Para birimi', body: 'TRY · EUR · USD · GBP · HUF ve 34 tanesi daha. Her harcamada tek listeden, aramayla seçilir.' },
           { big: '1 IBAN', title: 'Döviz başına', body: 'Her para birimi için ayrı hesap ekle. Kopyalanan IBAN borcun dövizine göre seçilir.' },
           { big: 'Ft 0', title: 'Yerel biçim', body: 'Forint ondalıksız, Euro virgüllü. Her tutar kendi yerel biçiminde gösterilir.' },
         ],

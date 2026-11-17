@@ -78,7 +78,7 @@ export const en: Dictionary = {
     },
     fx: {
       title: 'Multi-currency, no confusion',
-      body: 'TRY, EUR, USD, GBP and HUF. Every record keeps its own currency. A dollar debt is never converted with a guessed rate and folded into a euro total; it shows as is, on its own row.',
+      body: '39 currencies: TRY, EUR, USD, GBP, HUF and more. Every record keeps its own currency. A dollar debt is never converted with a guessed rate and folded into a euro total; it shows as is, on its own row.',
       rows: [
         { flag: '🇪🇺', code: 'EUR', name: 'Euro', amount: '+€103.00', positive: true },
         { flag: '🇺🇸', code: 'USD', name: 'US Dollar', amount: '−$45.00', positive: false },
@@ -163,7 +163,7 @@ export const en: Dictionary = {
       },
       {
         q: 'Which currencies are supported?',
-        a: 'TRY, EUR, USD, GBP and HUF. Each record keeps its own currency; different currencies are never added together. You can add a separate IBAN per currency, and the one you copy matches the currency of the debt.',
+        a: '39 currencies: TRY, EUR, USD, GBP, HUF and more. Each record keeps its own currency; different currencies are never added together. You can add a separate IBAN per currency, and the one you copy matches the currency of the debt.',
       },
       {
         q: 'Where is my data stored?',
@@ -187,7 +187,7 @@ export const en: Dictionary = {
     terms: 'Terms of Use',
     privacy: 'Privacy Policy',
     deletion: 'Account and Data Deletion',
-    legalNote: 'Also available in Turkish.',
+    legalNote: 'Available in Turkish and English with the same content; the version in the language you accepted prevails.',
   },
   legalPage: {
     crumb: 'legal',
@@ -320,8 +320,8 @@ export const en: Dictionary = {
       },
       doviz: {
         eyebrow: 'Multi-currency',
-        title: 'Five currencies, zero confusion.',
-        lead: 'TRY, EUR, USD, GBP and HUF. Every record keeps its own currency; different currencies are never added together and never hidden.',
+        title: '39 currencies, zero confusion.',
+        lead: '39 currencies: TRY, EUR, USD, GBP, HUF and more. Every record keeps its own currency; different currencies are never added together and never hidden.',
         screenLabel: 'Home · Currency chips',
         points: [
           { title: 'Never added together', body: 'No guessed rates, no misleading totals. A EUR debt shows as EUR, a TRY credit as TRY.' },
@@ -329,7 +329,7 @@ export const en: Dictionary = {
           { title: 'Main currency', body: 'The big balance cards use the main currency you chose. Tap the chips to switch to the others.' },
         ],
         cards: [
-          { big: '5', title: 'Currencies', body: 'TRY · EUR · USD · GBP · HUF. Picked from a single list on every expense.' },
+          { big: '39', title: 'Currencies', body: 'TRY · EUR · USD · GBP · HUF and 34 more. Searched and picked from a single list on every expense.' },
           { big: '1 IBAN', title: 'Per currency', body: 'Add a separate account for each currency. The IBAN you copy matches the currency of the debt.' },
           { big: 'Ft 0', title: 'Local formatting', body: 'Forint without decimals, euro with commas. Every amount in its own locale format.' },
         ],
