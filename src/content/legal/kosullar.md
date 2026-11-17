@@ -4,7 +4,7 @@ shortTitle: "Kullanım Koşulları"
 subtitle: "odesh mobil uygulamasının kullanımına ilişkin koşullar. Geliştirici: Alp Çakın · İletişim: support@alpcakin.com"
 description: "odesh mobil uygulamasının Kullanım Koşulları. Hizmetin niteliği, kullanıcı yükümlülükleri, hatırlatma özelliği, sorumluluk sınırları ve iletişim."
 order: 1
-version: "1.1"
+version: "1.2"
 ---
 
 Bu Kullanım Koşulları ("Koşullar"), odesh mobil uygulamasını ("Uygulama") kullanan kişiler ("Kullanıcı") ile Uygulama'nın geliştiricisi Alp Çakın ("Geliştirici") arasındaki ilişkiyi düzenler. Uygulamayı kullanarak bu Koşullar'ı kabul etmiş olursunuz. Kişisel verilerinizin işlenmesi ayrı bir belge olan Aydınlatma Metni'nde açıklanmıştır.
@@ -86,15 +86,15 @@ Uygulama; barındırma, bildirim, e-posta, hata takibi ve kullanım analitiği i
 
 ## 10. Değişiklikler
 
-Bu Koşullar güncellenebilir. Kullanıcının haklarını daraltan veya yükümlülük getiren önemli değişikliklerde kullanıcılar yürürlükten en az 15 gün önce uygulama içi bildirim veya e-posta yoluyla bilgilendirilir. Değişikliği kabul etmeyen kullanıcı hesabını silebilir; değişiklik sonrası Uygulama'yı kullanmaya devam etmek yeni Koşullar'ı kabul anlamına gelir.
+Bu Koşullar güncellenebilir. Kullanıcının haklarını daraltan veya yükümlülük getiren önemli değişikliklerde kullanıcılar yürürlükten en az 15 gün önce uygulama içi bildirim veya e-posta yoluyla bilgilendirilir ve Uygulama yeni sürümü onaylamanızı ister. Değişikliği kabul etmeyen kullanıcı hesabını silebilir.
 
 ## 11. Uygulanacak Hukuk ve Yetkili Mahkeme
 
-Bu Koşullar **Türk hukukuna** tabidir. Uyuşmazlıklarda **Türkiye mahkemeleri ve icra daireleri** yetkilidir. Tüketici sıfatını taşıyan kullanıcıların, 6502 sayılı Tüketicinin Korunması Hakkında Kanun kapsamında yerleşim yerlerindeki Tüketici Hakem Heyeti'ne ve Tüketici Mahkemesi'ne başvurma hakları saklıdır. Türkiye dışında yerleşik kullanıcıların bulundukları ülkenin emredici tüketici koruma kuralları saklıdır.
+Bu Koşullar **Türk hukukuna** tabidir. Uyuşmazlıklarda **Türkiye mahkemeleri ve icra daireleri** yetkilidir. Tüketici sıfatını taşıyan kullanıcıların, 6502 sayılı Tüketicinin Korunması Hakkında Kanun kapsamında yerleşim yerlerindeki Tüketici Hakem Heyeti'ne ve Tüketici Mahkemesi'ne başvurma hakları saklıdır. Türkiye dışında yerleşik tüketicilerin yaşadıkları ülkenin emredici tüketici koruma kuralları saklıdır ve bu tüketiciler o ülkenin mahkemelerinde de dava açabilir.
 
 ## 12. Genel Hükümler
 
-Bu Koşullar'ın bir hükmünün geçersiz sayılması diğer hükümleri etkilemez. Geliştirici'nin bir hakkını kullanmaması o haktan feragat ettiği anlamına gelmez. Bu Koşullar Türkçe düzenlenmiştir; başka dillerdeki çeviriler kolaylık amaçlıdır ve çelişki hâlinde Türkçe metin esas alınır.
+Bu Koşullar'ın bir hükmünün geçersiz sayılması diğer hükümleri etkilemez. Geliştirici'nin bir hakkını kullanmaması o haktan feragat ettiği anlamına gelmez. Bu Koşullar Türkçe ve İngilizce olarak aynı içerikle sunulur; iki metin arasında fark olursa Koşullar'ı hangi dilde onayladıysanız o dildeki metin esas alınır.
 
 ## 13. İletişim
 
@@ -102,4 +102,4 @@ Sorularınız için: **support@alpcakin.com**
 
 ---
 
-*Bu Kullanım Koşulları, odesh uygulamasının profil kurulum ekranında kullanıcı tarafından ayrıca onaylanmaktadır. Onay, kabul edilen sürüm numarası ve zaman damgasıyla kayıt altına alınır.*
+*Bu Kullanım Koşulları, odesh uygulamasının profil kurulum ekranında kullanıcı tarafından ayrıca onaylanmaktadır. Onay, kabul edilen sürüm numarası, dil ve zaman damgasıyla kayıt altına alınır.*

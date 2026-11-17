@@ -16,8 +16,8 @@ export const SITE = {
   heroCycleMs: 4200,
 } as const;
 
-// Effective date shown on legal pages. Turkish stays at the published version until it is updated with the app
-// release that ships the matching consent screens (odesh repo, docs/i18n_europe.md §0).
+// Effective date shown on legal pages. Both languages now carry the 1.3 / 1.2 texts that app build 5 asks users to
+// re-accept (odesh repo, docs/i18n_europe.md §0 D-15).
 export const LEGAL = {
-  date: { tr: 'Eylül 2026', en: 'October 2026' },
+  date: { tr: 'Ekim 2026', en: 'October 2026' },
 } as const;

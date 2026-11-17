@@ -4,12 +4,14 @@ shortTitle: "Aydınlatma Metni"
 subtitle: "KVKK m.10 kapsamında aydınlatma. Veri sorumlusu: Alp Çakın (gerçek kişi, Türkiye) · İletişim: support@alpcakin.com"
 description: "odesh uygulamasının KVKK kapsamındaki Aydınlatma Metni. İşlenen veriler, amaçlar, aktarılan taraflar, saklama süreleri ve ilgili kişi hakları."
 order: 2
-version: "1.2"
+version: "1.3"
 ---
 
 ## 1. Veri Sorumlusu
 
 6698 sayılı Kişisel Verilerin Korunması Kanunu ("KVKK") kapsamında veri sorumlusu **Alp Çakın**'dır. Kişisel verilerinize ilişkin taleplerinizi support@alpcakin.com adresine iletebilirsiniz (bkz. bölüm 8).
+
+Veri sorumlusu Avrupa Birliği'nde (Macaristan) yerleşik olduğundan, nerede yaşadığınızdan bağımsız olarak AB Genel Veri Koruma Tüzüğü ("GDPR") de uygulanır. Bu metnin İngilizcesi (Privacy Policy) aynı içeriktedir.
 
 ## 2. İşlenen Kişisel Veriler, Amaçlar ve Hukuki Sebepler
 
@@ -21,12 +23,12 @@ version: "1.2"
 | Finansal | Borç, harcama ve ödeme kayıtları: tutar, para birimi, tarih, açıklama, taraflar | Çekirdek borç takip hizmeti | Sözleşmenin ifası (m.5/2-c) |
 | Görsel | Fiş/fatura görseli (isteğe bağlı) | Harcamanın belgelenmesi | Sözleşmenin ifası (m.5/2-c) |
 | İlişki | Arkadaşlık bağları, grup üyelikleri, engelleme kayıtları, davet bağlantıları | Kimin kiminle kayıt paylaşabileceğinin belirlenmesi; istenmeyen kişilerin engellenmesi | Sözleşmenin ifası (m.5/2-c) |
-| Tercih | Ana para birimi, bildirim ve hatırlatma tercihleri, IBAN görünürlüğü, kullanım verisi paylaşım tercihi | Uygulamanın tercihlerinize göre çalışması | Sözleşmenin ifası (m.5/2-c) |
-| Onay kaydı | Kabul edilen Kullanım Koşulları ve Aydınlatma Metni sürümü, yaş beyanı, zaman damgası | Onayın ispatı | Hukuki yükümlülüğün yerine getirilmesi (m.5/2-ç) |
-| Teknik | Cihaz push bildirim anahtarı ve platformu (iOS/Android); Apple ile giriş kullanıldıysa Apple'ın verdiği yenileme anahtarı | Bildirim gönderimi; hesap silinirken Apple erişiminin iptali | Sözleşmenin ifası (m.5/2-c) |
+| Tercih | Ana para birimi, uygulama dili, bildirim ve hatırlatma tercihleri, IBAN görünürlüğü, kullanım verisi paylaşım tercihi | Uygulamanın tercihlerinize göre çalışması | Sözleşmenin ifası (m.5/2-c) |
+| Onay kaydı | Kabul edilen Kullanım Koşulları ve Aydınlatma Metni sürümü ve dili, yaş beyanı, zaman damgası; kullanım verisi tercihinizin zamanı | Onayın ve rızanın ispatı | Hukuki yükümlülüğün yerine getirilmesi (m.5/2-ç) |
+| Teknik | Cihaz push bildirim anahtarı ve platformu (iOS/Android), cihazın dili ve saat dilimi; Apple ile giriş kullanıldıysa Apple'ın verdiği yenileme anahtarı | Bildirimlerin sizin dilinizde ve uygun yerel saatte gönderimi; hesap silinirken Apple erişiminin iptali | Sözleşmenin ifası (m.5/2-c) |
 | Güvenlik ve işlem kayıtları | Oturum açma/kapama olayları, IP adresi, zaman damgası, istek kayıtları | Hizmet güvenliği, kötüye kullanım ve dolandırıcılık tespiti, hata giderme | Meşru menfaat (m.5/2-f) |
 | Hata kaydı | Uygulama çökme/hata kaydı: hata mesajı, yığın izi, uygulama sürümü, cihaz modeli, işletim sistemi sürümü | Hataların teşhisi ve giderilmesi | Meşru menfaat (m.5/2-f) |
-| Kullanım analitiği | Hangi ekranın açıldığı, hangi akış adımının tamamlandığı, olay sayaçları; cihaz modeli, işletim sistemi sürümü, uygulama sürümü; geri çevrilemez şekilde türetilmiş takma kullanıcı kimliği. IP adresi saklanmaz ve IP'den konum türetilmez | Akışlardaki tıkanma noktalarının ve kullanılmayan özelliklerin tespiti, uygulamanın iyileştirilmesi | Meşru menfaat (m.5/2-f). Ayarlar'dan her zaman kapatılabilir (bkz. bölüm 3) |
+| Kullanım analitiği | Hangi ekranın açıldığı, hangi akış adımının tamamlandığı, olay sayaçları; cihaz modeli, işletim sistemi sürümü, uygulama sürümü; geri çevrilemez şekilde türetilmiş takma kullanıcı kimliği. IP adresi saklanmaz ve IP'den konum türetilmez | Akışlardaki tıkanma noktalarının ve kullanılmayan özelliklerin tespiti, uygulamanın iyileştirilmesi | **Açık rıza (m.5/1)**, yalnızca onay verirseniz (bkz. bölüm 2.5) |
 | Üçüncü kişi verisi | Uygulamayı kullanmayan bir kişi için girdiğiniz ad ve isteğe bağlı IBAN ("Defter" ve "sanal üye") | Kendi borç ilişkinizi takip etmeniz | Meşru menfaat (m.5/2-f); ayrıntı bölüm 2.2 |
 
 IBAN ve finansal kayıtlar KVKK anlamında özel nitelikli kişisel veri değildir; ancak hassas nitelikleri nedeniyle m.12 kapsamında ek teknik ve idari tedbirlerle korunur (bkz. "Veri Güvenliği Tedbirleri"). Özel nitelikli kişisel veri (sağlık, din, biyometrik veri vb.) hiçbir şekilde talep edilmez ve işlenmez.
@@ -61,6 +63,10 @@ Arkadaşlarınız ve grup üyeleriniz, sizi taraf gösteren harcama ve ödeme ka
 - **Kamera / galeri:** Yalnızca fiş veya profil fotoğrafı eklemek için, siz seçtiğinizde. Galeriniz taranmaz.
 - **Rehber, konum, mikrofon:** Erişilmez. Arkadaş ekleme yalnızca @etiket veya davet bağlantısıyla yapılır.
 
+### 2.5 Kullanım analitiği açık rızanıza bağlıdır
+
+Kullanım analitiği **siz onay verene kadar kapalıdır**. Yeni kullanıcılara profil kurulumunda isteğe bağlı, işaretsiz bir kutuyla, mevcut kullanıcılara uygulama içinde bir kez sorulur. Onay vermeden, giriş öncesi ekranlar dahil hiçbir veri gönderilmez. Rızanızı **Ayarlar > Gizlilik & Veri > Kullanım Verisi Paylaşımı**'ndan istediğiniz zaman geri alabilirsiniz; geri almak önceki işlemeyi etkilemez. Onay vermemeniz uygulamanın geri kalanını etkilemez.
+
 ## 3. Kişisel Verilerin Aktarıldığı Taraflar
 
 ### 3.1 Diğer kullanıcılar
@@ -80,12 +86,12 @@ Engellediğiniz kişi sizi arayamaz, size istek gönderemez ve profilinizi göre
 | Alıcı | Aktarılan veri | Amaç | Konum ve güvence |
 |---|---|---|---|
 | Supabase, Inc. | Tüm uygulama verisi (veri tabanı, kimlik doğrulama, dosya depolama, sunucu fonksiyonları) | Barındırma ve altyapı | AB (İrlanda); Veri İşleme Sözleşmesi |
-| 650 Industries, Inc. (Expo) | Push bildirim anahtarı ve bildirim metni (kişi adı içerebilir, tutar asla içermez); uygulama güncellemesi kontrolünde cihaz platformu, uygulama sürümü ve IP adresi | Bildirimlerin Apple/Google servislerine iletilmesi; uygulama güncellemelerinin dağıtımı | ABD; hizmet sözleşmesi |
+| 650 Industries, Inc. (Expo) | Push bildirim anahtarı ve bildirim metni (kişi adı içerebilir, tutar asla içermez); uygulama güncellemesi kontrolünde cihaz platformu, uygulama sürümü ve IP adresi | Bildirimlerin Apple/Google servislerine iletilmesi; uygulama güncellemelerinin dağıtımı | ABD; Standart Sözleşme Hükümlerini içeren hizmet sözleşmesi |
 | Apple Inc. / Google LLC (bildirim servisleri) | Push bildirim anahtarı ve bildirim metni | Bildirimin cihazınıza ulaştırılması | Platform hizmet sözleşmeleri |
 | Apple Inc. / Google LLC (sosyal giriş) | Giriş talebi; sağlayıcıdan bize dönen ad, e-posta ve profil fotoğrafı bağlantısı | Yalnızca siz bu seçeneği kullanırsanız hesap oluşturma ve giriş | Platform hizmet sözleşmeleri |
-| Resend, Inc. | E-posta adresi ve e-posta içeriği (doğrulama kodu) | Hesap doğrulama, şifre sıfırlama ve önemli hizmet e-postalarının iletilmesi | ABD; Veri İşleme Sözleşmesi |
+| Resend, Inc. | E-posta adresi ve e-posta içeriği (doğrulama kodu) | Hesap doğrulama, şifre sıfırlama ve önemli hizmet e-postalarının iletilmesi | ABD; Standart Sözleşme Hükümlerini içeren Veri İşleme Sözleşmesi; AB-ABD Veri Gizliliği Çerçevesi sertifikalı |
 | Functional Software, Inc. (Sentry) | Hata mesajı, yığın izi, uygulama sürümü, cihaz modeli, işletim sistemi sürümü; anonim oturum sayacı | Hataların teşhisi | AB (Almanya); Veri İşleme Sözleşmesi. Ad, e-posta, IP adresi, IBAN, oturum anahtarı ve istek adresleri gönderilmez |
-| PostHog, Inc. | Bölüm 2'deki "Kullanım analitiği" satırı | Uygulamanın iyileştirilmesi | AB (Almanya); Veri İşleme Sözleşmesi. Ad, e-posta, IBAN, tutar ve gerçek kullanıcı kimliği gönderilmez. **Ayarlar > Gizlilik & Veri > Kullanım Verisi Paylaşımı** ile kapatılabilir |
+| PostHog, Inc. | Bölüm 2'deki "Kullanım analitiği" satırı | Uygulamanın iyileştirilmesi | AB (Almanya); Veri İşleme Sözleşmesi. Yalnızca açık rızanızla (bölüm 2.5). Ad, e-posta, IBAN, tutar ve gerçek kullanıcı kimliği gönderilmez |
 
 Verileriniz reklam, pazarlama veya veri ticareti amacıyla hiçbir üçüncü tarafla paylaşılmaz, satılmaz. Reklam kimliği kullanılmaz.
 
@@ -95,7 +101,7 @@ Kanunen yetkili kamu kurum ve kuruluşlarının (mahkeme, savcılık, Kişisel V
 
 ### 3.4 Yurt dışı aktarım
 
-Verileriniz Supabase altyapısında **İrlanda'da (Avrupa Birliği)** barındırılır; hata kayıtları ve kullanım analitiği de Avrupa Birliği'nde işlenir. E-posta gönderimi ve bildirim iletimi için kullanılan Resend ve Expo hizmetleri ABD'dedir. Bu aktarımlar KVKK m.9 kapsamında, ilgili hizmet sağlayıcılarla yapılan veri işleme sözleşmeleri ve Kişisel Verileri Koruma Kurulu'nun öngördüğü uygun güvenceler çerçevesinde gerçekleştirilir. Aktarımın yapıldığı ülke ve güvence hakkında bilgi almak için bölüm 8'deki adrese başvurabilirsiniz.
+Verileriniz Supabase altyapısında **İrlanda'da (Avrupa Birliği)** barındırılır; hata kayıtları ve kullanım analitiği de Avrupa Birliği'nde işlenir. E-posta gönderimi ve bildirim iletimi için kullanılan Resend ve Expo hizmetleri ABD'dedir. Bu aktarımlar KVKK m.9 kapsamında, ilgili hizmet sağlayıcılarla yapılan veri işleme sözleşmeleri ve Kişisel Verileri Koruma Kurulu'nun öngördüğü uygun güvenceler çerçevesinde gerçekleştirilir. GDPR bakımından ABD'deki bu hizmet sağlayıcılara aktarım, sağlayıcıların sözleşmelerine dahil Avrupa Komisyonu Standart Sözleşme Hükümlerine (GDPR m.46/2-c) dayanır; Resend ayrıca AB-ABD Veri Gizliliği Çerçevesi sertifikalıdır (GDPR m.45). Aktarımın yapıldığı ülke ve güvence hakkında bilgi almak için bölüm 8'deki adrese başvurabilirsiniz.
 
 ## 4. Veri Toplama Yöntemi
 
@@ -104,7 +110,7 @@ Verileriniz elektronik ortamda, otomatik yollarla toplanır:
 - doğrudan sizden: kayıt formu, profil ve ayar ekranları, harcama/borç/ödeme giriş ekranları, fotoğraf seçimi;
 - diğer kullanıcılardan: sizi taraf gösteren kayıtlar (bölüm 2.3);
 - sosyal giriş sağlayıcılarından: yalnızca siz bu seçeneği kullanırsanız (bölüm 2.1);
-- cihazınızdan ve uygulamanın kullanımından: bildirim anahtarı, cihaz/işletim sistemi bilgisi, hata kayıtları, kullanım olayları, IP adresi.
+- cihazınızdan ve uygulamanın kullanımından: bildirim anahtarı, cihaz dili ve saat dilimi, cihaz/işletim sistemi bilgisi, hata kayıtları, kullanım olayları (yalnızca rızanızla), IP adresi.
 
 ## 5. Saklama Süreleri
 
@@ -113,7 +119,7 @@ Verileriniz elektronik ortamda, otomatik yollarla toplanır:
 | Hesap, profil, tercih, ilişki verisi, IBAN | Hesap silinene kadar |
 | Borç, harcama ve ödeme kayıtları | Hesap silinene kadar; silme sonrası size ait alanlar anonimleştirilir (aşağıya bakınız) |
 | Fiş görseli | İlgili kayıt silinene veya hesap silinene kadar |
-| Push bildirim anahtarı | Cihazın son kullanımından itibaren en fazla 90 gün; hesap silinince derhal |
+| Push bildirim anahtarı, cihaz dili ve saat dilimi | Cihazın son kullanımından itibaren en fazla 90 gün; hesap silinince derhal |
 | Bildirim gönderim kayıtları | 90 gün |
 | Kimlik doğrulama ve güvenlik kayıtları | Altyapı sağlayıcısının log saklama süresi boyunca, en fazla 12 ay |
 | Hata kayıtları (Sentry) | 90 gün |
@@ -139,6 +145,8 @@ KVKK'nın 11. maddesi kapsamında aşağıdaki haklara sahipsiniz:
 - İşlenen verilerin münhasıran otomatik sistemlerle analiz edilmesi suretiyle aleyhinize bir sonucun ortaya çıkmasına itiraz etme
 - Kanuna aykırı işleme nedeniyle zarara uğramanız hâlinde zararın giderilmesini talep etme
 
+GDPR kapsamında ayrıca verilerinize erişme ve kopyasını alma (m.15), düzeltme (m.16), silme (m.17), işlemeyi kısıtlama (m.18), verilerin taşınması (m.20), meşru menfaate dayalı işlemeye itiraz (m.21) ve rızanızı dilediğiniz zaman geri alma (m.7/3) haklarınız vardır. Yaşadığınız veya çalıştığınız AB ülkesinin denetim makamına ya da Macaristan Veri Koruma Makamı'na (Nemzeti Adatvédelmi és Információszabadság Hatóság, naih.hu) şikâyette bulunabilirsiniz.
+
 Ayrıca: profil ve IBAN bilgilerinizi uygulama içinden her zaman düzeltebilir, kullanım verisi paylaşımını Ayarlar'dan kapatabilir, hesabınızı Profil ekranından silebilirsiniz.
 
 ## 8. Başvuru
@@ -151,8 +159,8 @@ odesh 16 yaş ve üzeri kullanıcılara yöneliktir. Bilerek 16 yaş altı kişi
 
 ## 10. Değişiklikler
 
-Bu metin, işleme faaliyetleri değiştiğinde güncellenir. Güncel sürüm uygulama içinden (Ayarlar > Yasal) ve bu sayfadan erişilebilir. Önemli değişikliklerde e-posta veya uygulama içi bildirimle bilgilendirilirsiniz.
+Bu metin, işleme faaliyetleri değiştiğinde güncellenir. Güncel sürüm uygulama içinden (Ayarlar > Yasal) ve https://odesh.app/yasal/aydinlatma adresinden erişilebilir. Sürüm değiştiğinde uygulama, bir sonraki açılışta güncel metni incelemenizi ve onaylamanızı ister.
 
 ---
 
-*Bu metin KVKK m.10 ve Aydınlatma Yükümlülüğünün Yerine Getirilmesinde Uyulacak Usul ve Esaslar Hakkında Tebliğ kapsamında hazırlanmıştır ve veri toplanmadan önce, profil kurulum ekranında sunulmaktadır.*
+*Bu metin KVKK m.10, Aydınlatma Yükümlülüğünün Yerine Getirilmesinde Uyulacak Usul ve Esaslar Hakkında Tebliğ ve GDPR m.13-14 kapsamında hazırlanmıştır ve veri toplanmadan önce, profil kurulum ekranında sunulmaktadır.*
